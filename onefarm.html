@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onefarm — Agri Intelligence for Northeast India</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* ── Brand from Logo ── */
+  --logo-green:    #5DB040;   /* bright field green */
+  --logo-dkgreen:  #3A6B2A;   /* dark field stripes */
+  --logo-brown:    #7B3A10;   /* wordmark brown */
+
+  /* ── Dark background palette ── */
+  --bg:    #060D04;
+  --bg2:   #0C1A09;
+  --panel: #111F0D;
+  --card:  #162512;
+
+  /* ── Borders using logo green ── */
+  --border:  rgba(93,176,64,0.18);
+  --border2: rgba(93,176,64,0.09);
+
+  /* ── Accent: logo green is primary, brown as warm accent ── */
+  --green:  #5DB040;
+  --green2: #7ED957;
+  --brown:  #A04A18;
+  --brown2: #C45E22;
+
+  /* ── Text ── */
+  --cream: #EDE8DC;
+  --muted: rgba(237,232,220,0.44);
+  --muted2:rgba(237,232,220,0.22);
+
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:var(--sans);font-size:15px;line-height:1.65;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--brown);color:#000}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--green);border-radius:2px}
+
+/* ── GRAIN ── */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity:.5}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:900;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;
+  background:rgba(6,13,4,0.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer}
+.logo-svg{height:48px;width:auto;display:block;flex-shrink:0}
+.logo-wordmark{display:flex;flex-direction:column;line-height:1}
+.logo-name{font-family:var(--sans);font-size:17px;font-weight:800;color:var(--brown);letter-spacing:-.01em}
+.logo-tagline{font-size:10px;color:var(--green);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.nav-mid{display:flex;gap:24px}
+.nav-mid a{font-size:13px;color:var(--muted);font-weight:500;transition:color .15s}
+.nav-mid a:hover{color:var(--cream)}
+.nav-r{display:flex;gap:10px;align-items:center}
+.pill{padding:7px 18px;border-radius:100px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .2s;border:none}
+.pill-outline{background:transparent;border:1px solid var(--border);color:var(--cream)}
+.pill-outline:hover{border-color:var(--green);color:var(--green)}
+.pill-gold{background:var(--green);color:#fff;font-weight:700}
+.pill-gold:hover{background:var(--green2);color:#000}
+
+/* ── HERO ── */
+.hero{position:relative;padding:56px 32px 48px;overflow:hidden;border-bottom:1px solid var(--border2)}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(ellipse 60% 80% at 80% 50%,rgba(93,176,64,0.07) 0%,transparent 70%),
+  radial-gradient(ellipse 40% 60% at 10% 80%,rgba(160,74,24,0.055) 0%,transparent 60%),
+  var(--bg);pointer-events:none}
+.hero-inner{position:relative;max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(93,176,64,0.09);border:1px solid rgba(93,176,64,0.22);
+  padding:5px 14px;border-radius:100px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:20px}
+.hero-dot{width:5px;height:5px;background:var(--green);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,4.5vw,58px);line-height:1.05;font-weight:600;letter-spacing:-.01em;margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero-sub{font-size:15px;color:var(--muted);max-width:480px;margin-bottom:28px;line-height:1.7;font-weight:300}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:36px}
+.cta-main{background:var(--green);color:#fff;border:none;padding:12px 28px;border-radius:100px;
+  font-size:14px;font-weight:700;cursor:pointer;font-family:var(--sans);transition:all .25s;display:inline-flex;align-items:center;gap:7px}
+.cta-main:hover{background:var(--green2);color:#000;transform:translateY(-2px);box-shadow:0 12px 30px rgba(93,176,64,0.3)}
+.cta-sec{background:transparent;color:var(--cream);border:1px solid rgba(237,230,211,0.2);padding:12px 28px;border-radius:100px;
+  font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.cta-sec:hover{border-color:var(--green);color:var(--green)}
+.hero-stats{display:flex;gap:32px}
+.stat-num{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--green);line-height:1}
+.stat-lbl{font-size:12px;color:var(--muted);margin-top:3px}
+
+/* Hero right side — live panel */
+.hero-right{display:flex;flex-direction:column;gap:12px}
+.hero-panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px}
+.hero-panel-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.hero-panel-hd h4{font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--green)}
+.live-badge{font-size:10px;background:rgba(93,176,64,0.12);border:1px solid rgba(93,176,64,0.2);color:var(--green);
+  padding:3px 9px;border-radius:100px;font-weight:700;letter-spacing:.05em}
+.weather-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.w-cell{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:10px 8px;text-align:center}
+.w-cell-state{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.w-cell-temp{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--cream);line-height:1;margin-bottom:2px}
+.w-cell-cond{font-size:11px;color:var(--muted)}
+.demand-row{display:flex;flex-direction:column;gap:8px}
+.demand-item{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--card);border:1px solid var(--border2);border-radius:10px}
+.demand-em{font-size:20px;width:32px;text-align:center}
+.demand-body{flex:1}
+.demand-name{font-size:13px;font-weight:600}
+.demand-buyer{font-size:11px;color:var(--muted)}
+.demand-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:100px;letter-spacing:.04em}
+.badge-h{background:rgba(93,176,64,0.12);color:var(--green);border:1px solid rgba(93,176,64,0.2)}
+.badge-m{background:rgba(160,74,24,0.1);color:var(--brown);border:1px solid rgba(160,74,24,0.2)}
+
+/* ── SECTION COMMON ── */
+.sec{padding:72px 32px}
+.sec-inner{max-width:1160px;margin:0 auto}
+.sec-hd{margin-bottom:40px}
+.sec-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.sec-title{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:600;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px}
+.sec-title em{font-style:italic;color:var(--brown)}
+.sec-sub{font-size:15px;color:var(--muted);max-width:520px;font-weight:300;line-height:1.7}
+.alt-bg{background:var(--bg2)}
+
+/* ── ADVISOR ── */
+.advisor-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:48px;align-items:start}
+.advisor-feats{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.feat-row{display:flex;gap:14px;padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:var(--r);align-items:flex-start}
+.feat-icon{width:38px;height:38px;background:rgba(93,176,64,0.12);border-radius:9px;display:grid;place-items:center;font-size:18px;flex-shrink:0}
+.feat-title{font-size:14px;font-weight:600;margin-bottom:3px}
+.feat-sub{font-size:12px;color:var(--muted);line-height:1.5}
+
+/* Chat */
+.chat-box{background:var(--panel);border:1px solid var(--border);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;height:520px}
+.chat-hd{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px;background:rgba(10,24,16,0.6)}
+.chat-av{width:38px;height:38px;background:linear-gradient(135deg,var(--green),var(--brown));border-radius:10px;display:grid;place-items:center;font-size:17px}
+.chat-hd-info h4{font-size:14px;font-weight:600;margin-bottom:1px}
+.chat-hd-info span{font-size:11px;color:var(--green);display:flex;align-items:center;gap:5px}
+.chat-hd-info span::before{content:'';width:5px;height:5px;background:var(--green);border-radius:50%;display:inline-block;animation:blink 2s infinite}
+.chat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:var(--panel) transparent}
+.msg{max-width:86%;padding:12px 16px;border-radius:12px;font-size:13.5px;line-height:1.6;animation:msgIn .25s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.msg.ai{background:rgba(14,30,20,0.9);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:3px}
+.msg.user{background:var(--green);color:#fff;align-self:flex-end;font-weight:500;border-bottom-right-radius:3px}
+.typing-wrap{align-self:flex-start;background:rgba(14,30,20,0.9);border:1px solid var(--border);border-radius:12px;border-bottom-left-radius:3px;padding:14px 18px}
+.typing{display:flex;gap:4px}
+.typing span{width:6px;height:6px;background:var(--green);border-radius:50%;animation:ty .7s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes ty{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+.chat-chips{padding:10px 16px;display:flex;gap:7px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.chip{background:rgba(93,176,64,0.09);border:1px solid rgba(93,176,64,0.18);color:var(--green);
+  font-size:12px;padding:5px 12px;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all .15s;white-space:nowrap}
+.chip:hover{background:rgba(93,176,64,0.18)}
+.chat-notice{margin:0 16px 10px;background:rgba(160,74,24,0.07);border:1px solid rgba(160,74,24,0.18);
+  border-radius:8px;padding:10px 14px;font-size:12px;color:var(--brown)}
+.chat-notice a{text-decoration:underline;cursor:pointer}
+.chat-input-row{padding:12px 16px;border-top:1px solid var(--border);display:flex;gap:9px;align-items:center}
+.chat-in{flex:1;background:rgba(20,32,25,0.8);border:1px solid var(--border);color:var(--cream);
+  padding:10px 16px;border-radius:100px;font-size:13px;font-family:var(--sans);outline:none;transition:border-color .2s}
+.chat-in:focus{border-color:var(--green)}
+.chat-in::placeholder{color:var(--muted2)}
+.send-btn{width:38px;height:38px;background:var(--green);border:none;border-radius:50%;cursor:pointer;display:grid;place-items:center;flex-shrink:0;transition:all .2s}
+.send-btn:hover{background:var(--green2);transform:scale(1.05)}
+
+/* ── PRODUCE GRID ── */
+.filters{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.fb{background:var(--panel);border:1px solid var(--border);color:var(--muted);
+  padding:7px 18px;border-radius:100px;font-size:13px;font-family:var(--sans);cursor:pointer;transition:all .2s;font-weight:500}
+.fb:hover,.fb.on{background:rgba(93,176,64,0.1);border-color:var(--green);color:var(--green)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.pcard{background:var(--panel);border:1px solid var(--border);border-radius:18px;overflow:hidden;
+  transition:all .25s;cursor:pointer;position:relative}
+.pcard:hover{transform:translateY(-3px);border-color:rgba(93,176,64,0.3);box-shadow:0 16px 36px rgba(0,0,0,0.35)}
+.pcard-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:54px;position:relative}
+.pcard-badge{position:absolute;top:10px;right:10px;background:var(--green);color:#fff;
+  font-size:9px;font-weight:800;letter-spacing:.05em;padding:3px 9px;border-radius:100px;text-transform:uppercase}
+.pcard-body{padding:16px}
+.ptags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.ptag{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:100px}
+.ptag-gi{background:rgba(160,74,24,0.12);color:var(--brown);border:1px solid rgba(160,74,24,0.2)}
+.ptag-org{background:rgba(93,176,64,0.1);color:var(--green);border:1px solid rgba(93,176,64,0.18)}
+.ptag-st{background:rgba(255,255,255,0.04);color:var(--muted);border:1px solid var(--border2)}
+.pname{font-family:var(--serif);font-size:21px;font-weight:600;margin-bottom:2px;line-height:1.1}
+.plocal{font-size:12px;color:var(--green);margin-bottom:7px;font-style:italic}
+.pdesc{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:12px}
+.pmeta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border2);padding-top:12px}
+.pprice{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--green)}
+.pseas{font-size:11px;color:var(--muted)}
+
+/* ── MARKET ── */
+.market-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}
+.mform{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:28px}
+.mform h3{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:6px}
+.mform p{font-size:13px;color:var(--muted);margin-bottom:22px}
+.ffield{margin-bottom:15px}
+.ffield label{display:block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.ffield input,.ffield select,.ffield textarea{
+  width:100%;background:rgba(20,32,25,0.8);border:1px solid var(--border);color:var(--cream);
+  padding:10px 14px;border-radius:10px;font-size:13px;font-family:var(--sans);outline:none;transition:border-color .2s;-webkit-appearance:none}
+.ffield input:focus,.ffield select:focus,.ffield textarea:focus{border-color:var(--green)}
+.ffield select option{background:var(--panel)}
+.ffield textarea{height:80px;resize:none}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.demand-section h3{font-family:var(--serif);font-size:26px;font-weight:600;margin-bottom:6px}
+.demand-section p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.dsig{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--panel);
+  border:1px solid var(--border);border-radius:12px;margin-bottom:10px;transition:all .2s}
+.dsig:hover{border-color:rgba(93,176,64,0.28);transform:translateX(3px)}
+.dsig-em{font-size:26px;width:44px;height:44px;display:grid;place-items:center;background:rgba(255,255,255,0.03);border-radius:10px;border:1px solid var(--border2)}
+.dsig-b{flex:1}
+.dsig-prod{font-weight:600;font-size:14px;margin-bottom:1px}
+.dsig-buyer{font-size:12px;color:var(--muted)}
+.dsig-r{text-align:right}
+.dsig-qty{font-size:11px;color:var(--muted);margin-top:4px}
+
+/* ── TECH ── */
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-top:40px}
+.tcard{background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:24px;
+  transition:all .25s;position:relative;overflow:hidden}
+.tcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),rgba(93,176,64,0))}
+.tcard:hover{transform:translateY(-3px);border-color:rgba(93,176,64,0.28);box-shadow:0 16px 32px rgba(0,0,0,0.3)}
+.ticon{font-size:30px;margin-bottom:14px}
+.tname{font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:5px}
+.tdesc{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px}
+.tprice{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--green);margin-bottom:2px}
+.tprice-note{font-size:11px;color:var(--muted);margin-bottom:14px}
+.ttags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.tai{background:rgba(93,176,64,0.07);border:1px solid rgba(93,176,64,0.14);
+  border-radius:8px;padding:9px 12px;font-size:12px;color:var(--green);line-height:1.5;display:flex;gap:7px}
+
+/* ── IT FAST TRACK ── */
+.ft-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.ft-badge-wrap{display:inline-flex;align-items:center;gap:7px;background:rgba(93,176,64,0.09);border:1px solid rgba(93,176,64,0.2);
+  padding:5px 13px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--green);margin-bottom:20px}
+.ft-title{font-family:var(--serif);font-size:clamp(28px,3vw,44px);font-weight:600;line-height:1.1;margin-bottom:12px}
+.ft-sub{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:28px;font-weight:300}
+.ftsteps{display:flex;flex-direction:column;gap:14px}
+.ftstep{display:flex;align-items:flex-start;gap:13px}
+.ftstep-n{width:30px;height:30px;background:var(--green);color:#fff;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:800;flex-shrink:0}
+.ftstep-b h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.ftstep-b p{font-size:13px;color:var(--muted);line-height:1.5}
+.roi-card{background:var(--panel);border:1px solid var(--border);border-radius:18px;padding:28px}
+.roi-card h3{font-family:var(--serif);font-size:24px;font-weight:600;margin-bottom:5px}
+.roi-card p{font-size:13px;color:var(--muted);margin-bottom:22px}
+.slider-row{margin-bottom:18px}
+.slider-lbl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:7px;color:var(--muted)}
+.slider-lbl span{color:var(--green);font-weight:600}
+input[type=range]{width:100%;-webkit-appearance:none;height:4px;border-radius:2px;outline:none;
+  background:linear-gradient(90deg,var(--green) 0%,var(--panel) 0%)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 0 0 3px rgba(93,176,64,0.2)}
+.roi-result{background:rgba(93,176,64,0.07);border:1px solid rgba(93,176,64,0.18);border-radius:12px;padding:18px;margin-top:18px;text-align:center}
+.roi-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.roi-val{font-family:var(--serif);font-size:42px;font-weight:600;color:var(--green);line-height:1}
+.roi-note{font-size:11px;color:var(--muted);margin-top:5px}
+.crop-sel{width:100%;background:rgba(20,32,25,0.8);border:1px solid var(--border);color:var(--green);
+  font-family:var(--sans);font-size:13px;font-weight:600;padding:9px 14px;border-radius:10px;outline:none;cursor:pointer;-webkit-appearance:none;margin-bottom:16px}
+.crop-sel option{background:var(--panel);color:var(--cream)}
+
+/* ── HERITAGE ── */
+.heritage-hd{display:grid;grid-template-columns:1fr auto;align-items:center;margin-bottom:36px}
+.heritage-count .num{font-family:var(--serif);font-size:72px;font-weight:400;color:var(--green);line-height:1}
+.heritage-count .lbl{font-size:13px;color:var(--muted)}
+.hgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.hcard{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:20px;
+  display:grid;grid-template-columns:68px 1fr;gap:16px;transition:all .2s;align-items:start}
+.hcard:hover{border-color:rgba(93,176,64,0.3);transform:translateY(-2px)}
+.hem{font-size:34px;width:68px;height:68px;background:rgba(93,176,64,0.05);border-radius:10px;
+  display:grid;place-items:center;border:1px solid var(--border2)}
+.hname{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:1px}
+.hlocal{font-size:11px;color:var(--green);margin-bottom:6px;font-style:italic}
+.hdesc{font-size:12.5px;color:var(--muted);line-height:1.5;margin-bottom:10px}
+.htags{display:flex;gap:5px;flex-wrap:wrap}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(4,12,6,0.88);backdrop-filter:blur(8px);
+  z-index:2000;display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:36px;max-width:460px;width:90%;animation:mIn .3s ease}
+@keyframes mIn{from{transform:translateY(16px);opacity:0}to{transform:none;opacity:1}}
+.modal h2{font-family:var(--serif);font-size:30px;font-weight:600;margin-bottom:7px}
+.modal p{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.6}
+.api-tabs{display:flex;gap:3px;background:rgba(255,255,255,0.04);border-radius:10px;padding:4px;margin-bottom:18px}
+.atab{flex:1;padding:9px;border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-size:13px;font-weight:600;border-radius:8px;cursor:pointer;transition:all .2s}
+.atab.on{background:var(--green);color:#fff}
+.akey{width:100%;background:rgba(20,32,25,0.9);border:1px solid var(--border);color:var(--cream);
+  padding:12px 16px;border-radius:10px;font-size:14px;font-family:var(--sans);outline:none;transition:border-color .2s;margin-bottom:12px}
+.akey:focus{border-color:var(--green)}
+.anote{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.6}
+.anote strong{color:var(--cream)}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 32px 32px}
+.footer-inner{max-width:1160px;margin:0 auto}
+.fgrid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px}
+.fbrand p{font-size:13px;color:var(--muted);margin-top:11px;line-height:1.7;max-width:260px}
+.fcol h4{font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+.fcol a{display:block;font-size:13px;color:var(--muted);margin-bottom:9px;transition:color .15s}
+.fcol a:hover{color:var(--cream)}
+.fbot{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.fbot p,.fbot a{font-size:12px;color:var(--muted)}
+.fleg{display:flex;gap:18px}
+
+/* ── CROP CALENDAR ── */
+#calendar{background:var(--bg)}
+.cal-state-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px}
+.cst{background:var(--panel);border:1px solid var(--border);color:var(--muted);
+  padding:8px 16px;border-radius:100px;font-size:13px;font-family:var(--sans);
+  cursor:pointer;transition:all .2s;font-weight:500;white-space:nowrap}
+.cst:hover{border-color:var(--green);color:var(--green)}
+.cst.on{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+.cal-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.cal-wrap::-webkit-scrollbar{height:3px}
+.cal-wrap::-webkit-scrollbar-thumb{background:var(--green);border-radius:2px}
+.cal-table{min-width:900px;width:100%;border-collapse:separate;border-spacing:0}
+.cal-table thead th{padding:8px 4px;font-size:11px;font-weight:700;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);text-align:center;border-bottom:1px solid var(--border)}
+.cal-table thead th.crop-hd{text-align:left;padding-left:0;min-width:160px;color:var(--cream);font-size:12px}
+.cal-table thead th.month-hd{min-width:60px;position:relative}
+.cal-table thead th.month-hd.now{color:var(--green)}
+.cal-table thead th.month-hd.now::after{content:'▼';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--green)}
+.cal-table tbody tr{border-bottom:1px solid var(--border2)}
+.cal-table tbody tr:last-child{border-bottom:none}
+.cal-crop-cell{padding:14px 0 14px 0;vertical-align:middle}
+.cal-crop-name{font-size:13px;font-weight:600;color:var(--cream);margin-bottom:2px}
+.cal-crop-local{font-size:11px;color:var(--muted);font-style:italic}
+.cal-month-cell{padding:4px 3px;vertical-align:middle;text-align:center}
+.cal-month-cell.now-col{background:rgba(93,176,64,0.05)}
+.cal-pill{height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;letter-spacing:.04em;cursor:default;position:relative;transition:transform .15s}
+.cal-pill:hover{transform:scale(1.08);z-index:10}
+.cal-pill.sow{background:rgba(93,176,64,0.25);border:1px solid rgba(93,176,64,0.4);color:#7ED957}
+.cal-pill.tend{background:rgba(233,190,44,0.2);border:1px solid rgba(233,190,44,0.35);color:#E9BE2C}
+.cal-pill.harvest{background:rgba(220,100,30,0.2);border:1px solid rgba(220,100,30,0.35);color:#E87A30}
+.cal-pill.prep{background:rgba(100,140,200,0.15);border:1px solid rgba(100,140,200,0.28);color:#7EA8D8}
+.cal-pill.rest{background:transparent;border:1px solid var(--border2);color:var(--muted2)}
+.cal-pill.flush{background:rgba(93,176,64,0.35);border:1px solid rgba(93,176,64,0.5);color:#9EE870}
+.cal-tooltip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 12px;
+  white-space:nowrap;font-size:12px;color:var(--cream);font-weight:400;z-index:100;
+  box-shadow:0 8px 24px rgba(0,0,0,0.4);pointer-events:none;letter-spacing:0}
+.cal-pill:hover .cal-tooltip{display:block}
+.cal-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--border2)}
+.cal-leg-item{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted)}
+.cal-leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.cal-state-info{background:var(--panel);border:1px solid var(--border);border-radius:14px;
+  padding:20px 24px;margin-bottom:28px;display:flex;gap:32px;flex-wrap:wrap;align-items:center}
+.cal-si-item{display:flex;flex-direction:column;gap:3px}
+.cal-si-label{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.cal-si-val{font-size:14px;font-weight:600;color:var(--cream)}
+.cal-si-val span{color:var(--green)}
+.cal-now-strip{background:rgba(93,176,64,0.07);border:1px solid rgba(93,176,64,0.15);
+  border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px;
+  font-size:13px;margin-bottom:24px}
+.cal-now-strip strong{color:var(--green)}
+
+
+@media(max-width:900px){
+  .hero-inner,.advisor-grid,.market-grid,.ft-grid{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .fgrid{grid-template-columns:1fr 1fr}
+  nav .nav-mid{display:none}
+}
+@media(max-width:600px){
+  nav{padding:0 16px}
+  .sec,.hero{padding-left:16px;padding-right:16px}
+  .fgrid{grid-template-columns:1fr}
+  .weather-row{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <svg class="logo-svg" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="55" r="52" fill="#5DB040"/>
+      <!-- Inner hole of O -->
+      <circle cx="60" cy="55" r="28" fill="#060D04"/>
+      <!-- Farm field stripes inside the O bottom half -->
+      <clipPath id="oClip">
+        <circle cx="60" cy="55" r="52"/>
+      </clipPath>
+      <g clip-path="url(#oClip)">
+        <!-- Dark hill shape -->
+        <ellipse cx="60" cy="72" rx="38" ry="22" fill="#3A6B2A"/>
+        <!-- Light field stripes -->
+        <path d="M22 78 Q60 68 98 78" stroke="#5DB040" stroke-width="4" fill="none"/>
+        <path d="M18 86 Q60 74 102 86" stroke="#5DB040" stroke-width="4.5" fill="none"/>
+        <path d="M14 95 Q60 82 106 95" stroke="#7ED957" stroke-width="3.5" fill="none"/>
+        <path d="M10 104 Q60 90 110 104" stroke="#5DB040" stroke-width="3" fill="none"/>
+        <!-- Inner circle cutout kept clean -->
+        <circle cx="60" cy="55" r="28" fill="#060D04"/>
+      </g>
+      <!-- "One Farm" text below -->
+      <text x="60" y="122" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="800" font-size="22" fill="#7B3A10">One Farm</text>
+    </svg>
+  </a>
+  <div class="nav-mid">
+    <a href="#advisor">AI Advisor</a>
+    <a href="#produce">Produce</a>
+    <a href="#market">Market</a>
+    <a href="#calendar">Crop Calendar</a>
+    <a href="#tech">Farm Tech</a>
+    <a href="#fasttrack">IT Fast-Track</a>
+    <a href="#heritage">Heritage</a>
+  </div>
+  <div class="nav-r">
+    <button class="pill pill-outline" onclick="openModal()">⚡ Setup AI</button>
+    <button class="pill pill-gold">Join as Farmer</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag"><span class="hero-dot"></span>Live · 8 States · Northeast India</div>
+      <h1>The land knows.<br><em>Now it speaks.</em></h1>
+      <p class="hero-sub">AI-powered agricultural intelligence built for the terrain, climate, and heritage of Northeast India. From seed to market — one platform.</p>
+      <div class="hero-ctas">
+        <button class="cta-main" onclick="document.getElementById('advisor').scrollIntoView({behavior:'smooth'})">🌿 Ask the AI Advisor</button>
+        <button class="cta-sec" onclick="document.getElementById('market').scrollIntoView({behavior:'smooth'})">Early Market Access →</button>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">8</div><div class="stat-lbl">NER States Covered</div></div>
+        <div><div class="stat-num">47+</div><div class="stat-lbl">GI Tagged Produces</div></div>
+        <div><div class="stat-num">127</div><div class="stat-lbl">Heirloom Varieties</div></div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-panel">
+        <div class="hero-panel-hd">
+          <h4>🌦 Live NER Weather</h4>
+          <span class="live-badge">LIVE</span>
+        </div>
+        <div class="weather-row" id="wx-grid">
+          <div class="w-cell"><div class="w-cell-state">Assam</div><div class="w-cell-temp" id="wx-0">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Meghalaya</div><div class="w-cell-temp" id="wx-1">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Manipur</div><div class="w-cell-temp" id="wx-2">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Nagaland</div><div class="w-cell-temp" id="wx-3">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Sikkim</div><div class="w-cell-temp" id="wx-4">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Mizoram</div><div class="w-cell-temp" id="wx-5">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Tripura</div><div class="w-cell-temp" id="wx-6">—°</div><div class="w-cell-cond">Loading</div></div>
+          <div class="w-cell"><div class="w-cell-state">Arunachal</div><div class="w-cell-temp" id="wx-7">—°</div><div class="w-cell-cond">Loading</div></div>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="hero-panel-hd"><h4>📦 Active Buyer Demand</h4><span class="live-badge">LIVE</span></div>
+        <div class="demand-row">
+          <div class="demand-item"><div class="demand-em">🌶️</div><div class="demand-body"><div class="demand-name">Bhut Jolokia</div><div class="demand-buyer">Mumbai Hot Sauce Co. · 500kg/mo</div></div><span class="demand-badge badge-h">HIGH</span></div>
+          <div class="demand-item"><div class="demand-em">💛</div><div class="demand-body"><div class="demand-name">Lakadong Turmeric</div><div class="demand-buyer">Bangalore Wellness Brand · 200kg/mo</div></div><span class="demand-badge badge-h">HIGH</span></div>
+          <div class="demand-item"><div class="demand-em">🖤</div><div class="demand-body"><div class="demand-name">Chakhao Black Rice</div><div class="demand-buyer">Delhi Specialty Grocer · 100kg/mo</div></div><span class="demand-badge badge-m">MED</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- AI ADVISOR -->
+<section class="sec alt-bg" id="advisor">
+  <div class="sec-inner">
+    <div class="advisor-grid">
+      <div>
+        <div class="sec-hd">
+          <div class="sec-tag">🤖 AI Intelligence Layer</div>
+          <h2 class="sec-title">Your farm's advisor<br><em>never sleeps.</em></h2>
+          <p class="sec-sub">Terrain-aware, season-aware, crop-specific. Ask in plain language. Powered by Gemini AI with deep NER agricultural knowledge.</p>
+        </div>
+        <div class="advisor-feats">
+          <div class="feat-row"><div class="feat-icon">🗻</div><div><div class="feat-title">Terrain-Specific Advice</div><div class="feat-sub">Different guidance for hill farms, valley farms, flood plains, and high-altitude plots of each NER state.</div></div></div>
+          <div class="feat-row"><div class="feat-icon">🌧️</div><div><div class="feat-title">Live Weather Integration</div><div class="feat-sub">Real-time weather for your district feeds into every recommendation — not generic India advice.</div></div></div>
+          <div class="feat-row"><div class="feat-icon">🌾</div><div><div class="feat-title">Organic-First by Default</div><div class="feat-sub">All advice defaults to organic and traditional methods. Preserves GI tag compliance and premium pricing.</div></div></div>
+          <div class="feat-row"><div class="feat-icon">💼</div><div><div class="feat-title">IT-to-Farmer Fast Track</div><div class="feat-sub">If you're new to farming — land assessment, crop selection, ROI projections and market readiness in one session.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="chat-box">
+          <div class="chat-hd">
+            <div class="chat-av">🌿</div>
+            <div class="chat-hd-info"><h4>Onefarm AI Advisor</h4><span>Gemini · NER Agriculture Expert</span></div>
+          </div>
+          <div class="chat-msgs" id="chat-msgs">
+            <div class="msg ai">Namaskar! 🙏 I'm your Onefarm AI Advisor — trained on the agriculture, terrain, and seasonal cycles of all 8 Northeast Indian states.<br><br>Ask about your crop, soil, pests, market prices, or what to grow next season. I understand the hills of Meghalaya, the valleys of Assam, and the highlands of Nagaland.</div>
+          </div>
+          <div class="chat-chips">
+            <button class="chip" onclick="sendSug(this)">🌶️ King Chilli care tips</button>
+            <button class="chip" onclick="sendSug(this)">🌿 Best crop for March in Assam</button>
+            <button class="chip" onclick="sendSug(this)">💛 Lakadong turmeric soil</button>
+            <button class="chip" onclick="sendSug(this)">📦 How to find buyers</button>
+          </div>
+          <div class="chat-notice" id="key-notice">⚡ <a onclick="openModal()">Add your Gemini API key</a> to activate AI responses — free at aistudio.google.com</div>
+          <div class="chat-input-row">
+            <input class="chat-in" id="chat-in" placeholder="Ask about your crop, season, or market..." onkeydown="if(event.key==='Enter')sendMsg()">
+            <button class="send-btn" onclick="sendMsg()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCE -->
+<section class="sec" id="produce">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div class="sec-tag">🌾 Produce Intelligence</div>
+      <h2 class="sec-title">NER's rarest treasures,<br><em>catalogued.</em></h2>
+      <p class="sec-sub">GI-tagged, organically grown, genetically unmodified. Each produce carries the legacy of generations.</p>
+    </div>
+    <div class="filters">
+      <button class="fb on" onclick="filterP('all',this)">All Produces</button>
+      <button class="fb" onclick="filterP('gi',this)">🏷️ GI Tagged</button>
+      <button class="fb" onclick="filterP('spice',this)">🌶️ Spices</button>
+      <button class="fb" onclick="filterP('grain',this)">🌾 Grains</button>
+      <button class="fb" onclick="filterP('fruit',this)">🍋 Fruits</button>
+      <button class="fb" onclick="filterP('herb',this)">🌿 Herbs</button>
+    </div>
+    <div class="pgrid" id="pgrid"></div>
+  </div>
+</section>
+
+<!-- MARKET ACCESS -->
+<section class="sec alt-bg" id="market">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div class="sec-tag">📦 Early Market Access</div>
+      <h2 class="sec-title">Sell <em>before</em> you harvest.</h2>
+      <p class="sec-sub">Signal your upcoming harvest to buyers across India — before your produce even leaves the farm. No middlemen.</p>
+    </div>
+    <div class="market-grid">
+      <div class="mform">
+        <h3>List Your Harvest</h3>
+        <p>Pre-harvest signalling — let buyers know what's coming.</p>
+        <div class="frow">
+          <div class="ffield"><label>Your State</label><select><option>Assam</option><option>Meghalaya</option><option>Manipur</option><option>Nagaland</option><option>Mizoram</option><option>Arunachal Pradesh</option><option>Tripura</option><option>Sikkim</option></select></div>
+          <div class="ffield"><label>District</label><input type="text" placeholder="e.g. Karbi Anglong"></div>
+        </div>
+        <div class="ffield"><label>Produce Name</label><input type="text" placeholder="e.g. Bhut Jolokia, Lakadong Turmeric"></div>
+        <div class="frow">
+          <div class="ffield"><label>Expected Quantity</label><input type="text" placeholder="e.g. 200 kg"></div>
+          <div class="ffield"><label>Harvest Month</label><select><option>April 2025</option><option>May 2025</option><option>June 2025</option><option>July 2025</option><option>August 2025</option><option>September 2025</option></select></div>
+        </div>
+        <div class="ffield"><label>Notes (Organic / GI / Heirloom)</label><textarea placeholder="e.g. Certified organic, GI tagged King Chilli, third generation seeds..."></textarea></div>
+        <div class="ffield"><label>WhatsApp Number</label><input type="text" placeholder="+91 XXXXXXXXXX — Buyers will contact you here"></div>
+        <button class="cta-main" style="width:100%;justify-content:center;margin-top:4px">🌿 Signal My Harvest</button>
+      </div>
+      <div class="demand-section">
+        <h3>Live Demand Signals</h3>
+        <p>Buyers actively seeking NER produce right now.</p>
+        <div class="dsig"><div class="dsig-em">🌶️</div><div class="dsig-b"><div class="dsig-prod">Bhut Jolokia (Fresh)</div><div class="dsig-buyer">Mumbai Hot Sauce Co.</div></div><div class="dsig-r"><span class="demand-badge badge-h">HIGH</span><div class="dsig-qty">500 kg/month</div></div></div>
+        <div class="dsig"><div class="dsig-em">💛</div><div class="dsig-b"><div class="dsig-prod">Lakadong Turmeric</div><div class="dsig-buyer">Bangalore Wellness Brand</div></div><div class="dsig-r"><span class="demand-badge badge-h">HIGH</span><div class="dsig-qty">200 kg/month</div></div></div>
+        <div class="dsig"><div class="dsig-em">🖤</div><div class="dsig-b"><div class="dsig-prod">Chakhao Black Rice</div><div class="dsig-buyer">Delhi Specialty Grocer</div></div><div class="dsig-r"><span class="demand-badge badge-m">MED</span><div class="dsig-qty">100 kg/month</div></div></div>
+        <div class="dsig"><div class="dsig-em">💚</div><div class="dsig-b"><div class="dsig-prod">Large Cardamom (Sikkim)</div><div class="dsig-buyer">Export House, Kolkata</div></div><div class="dsig-r"><span class="demand-badge badge-h">HIGH</span><div class="dsig-qty">1 MT/season</div></div></div>
+        <div class="dsig"><div class="dsig-em">🍋</div><div class="dsig-b"><div class="dsig-prod">Kachai Lemon</div><div class="dsig-buyer">Guwahati F&B Startup</div></div><div class="dsig-r"><span class="demand-badge badge-m">MED</span><div class="dsig-qty">300 kg/week</div></div></div>
+        <div class="dsig"><div class="dsig-em">🍍</div><div class="dsig-b"><div class="dsig-prod">Queen Pineapple (Tripura)</div><div class="dsig-buyer">Pan-India D2C Platform</div></div><div class="dsig-r"><span class="demand-badge badge-h">HIGH</span><div class="dsig-qty">2,000 pieces</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CROP CALENDAR -->
+<section class="sec" id="calendar">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div class="sec-tag">📅 Crop Calendar</div>
+      <h2 class="sec-title">Know your land's<br><em>rhythm.</em></h2>
+      <p class="sec-sub">Month-by-month what to sow, tend, and harvest — specific to your state, your terrain, your crop.</p>
+    </div>
+
+    <div class="cal-now-strip" id="cal-now-strip">
+      🌿 <span id="cal-now-text">Loading calendar...</span>
+    </div>
+
+    <div class="cal-state-tabs" id="cal-tabs">
+      <button class="cst on" onclick="showState('assam',this)">🌿 Assam</button>
+      <button class="cst" onclick="showState('meghalaya',this)">💛 Meghalaya</button>
+      <button class="cst" onclick="showState('manipur',this)">🖤 Manipur</button>
+      <button class="cst" onclick="showState('nagaland',this)">🌶️ Nagaland</button>
+      <button class="cst" onclick="showState('mizoram',this)">🍃 Mizoram</button>
+      <button class="cst" onclick="showState('arunachal',this)">🏔️ Arunachal</button>
+      <button class="cst" onclick="showState('tripura',this)">🍍 Tripura</button>
+      <button class="cst" onclick="showState('sikkim',this)">💚 Sikkim</button>
+    </div>
+
+    <div class="cal-state-info" id="cal-state-info"></div>
+
+    <div class="cal-wrap">
+      <table class="cal-table" id="cal-table">
+        <thead id="cal-thead"></thead>
+        <tbody id="cal-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="cal-legend">
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(93,176,64,0.35);border:1px solid rgba(93,176,64,0.5)"></div>Sow / Plant</div>
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(233,190,44,0.25);border:1px solid rgba(233,190,44,0.4)"></div>Tend / Maintain</div>
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(220,100,30,0.25);border:1px solid rgba(220,100,30,0.4)"></div>Harvest</div>
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(100,140,200,0.2);border:1px solid rgba(100,140,200,0.35)"></div>Land Prep</div>
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(93,176,64,0.45);border:1px solid rgba(93,176,64,0.6)"></div>Flush / Peak</div>
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:transparent;border:1px solid rgba(93,176,64,0.12)"></div>Rest / Off-season</div>
+    </div>
+  </div>
+</section>
+
+<!-- FARM TECH -->
+<section class="sec" id="tech">
+  <div class="sec-inner">
+    <div class="sec-hd">
+      <div class="sec-tag">⚙️ Modern Farming & Tech Selection</div>
+      <h2 class="sec-title">The right tool<br>for <em>your terrain.</em></h2>
+      <p class="sec-sub">AI-matched, low-cost farming technology vetted for NER conditions. No upselling — just what actually works.</p>
+    </div>
+    <div class="tgrid">
+      <div class="tcard"><div class="ticon">🌡️</div><div class="tname">Soil Health Monitor</div><div class="tdesc">Measures NPK, pH, moisture and temperature wirelessly. Works on slopes and hill terrain.</div><div class="tprice">₹4,500</div><div class="tprice-note">One-time. No subscription.</div><div class="ttags"><span class="ptag ptag-org">All Terrain</span><span class="ptag ptag-org">Organic Farms</span></div><div class="tai">🤖 <span>Recommended for Lakadong Turmeric farmers in Meghalaya — soil pH directly controls curcumin content.</span></div></div>
+      <div class="tcard"><div class="ticon">💧</div><div class="tname">Drip Irrigation Kit</div><div class="tdesc">Gravity-fed drip system. Needs no electricity. Covers 0.5 acres and is fully expandable.</div><div class="tprice">₹2,800</div><div class="tprice-note">Per 0.5 acre. Expandable.</div><div class="ttags"><span class="ptag ptag-org">Water Scarce</span><span class="ptag ptag-org">Hill Terrain</span></div><div class="tai">🤖 <span>Best for Nagaland hill farms growing King Chilli — reduces water stress in dry spells without electricity.</span></div></div>
+      <div class="tcard"><div class="ticon">🌦️</div><div class="tname">Agri Weather Station</div><div class="tdesc">Hyperlocal rain gauge, humidity, temperature and wind sensor. Solar-powered, Bluetooth to phone.</div><div class="tprice">₹6,200</div><div class="tprice-note">Solar powered. No battery cost.</div><div class="ttags"><span class="ptag ptag-org">All States</span><span class="ptag ptag-org">Smart Farm</span></div><div class="tai">🤖 <span>Critical for Sikkim cardamom farms — micro-climate variation in hills is extreme. This pays for itself.</span></div></div>
+      <div class="tcard"><div class="ticon">🐛</div><div class="tname">Pheromone Trap Set</div><div class="tdesc">Chemical-free pest control. Species-specific traps for the most common NER pests. Full 3-month kit.</div><div class="tprice">₹850</div><div class="tprice-note">Per season. Organic certified.</div><div class="ttags"><span class="ptag ptag-org">Organic</span><span class="ptag ptag-org">No Chemicals</span></div><div class="tai">🤖 <span>Essential for Assam ginger and chilli farmers. Avoids chemicals that break GI tag compliance.</span></div></div>
+      <div class="tcard"><div class="ticon">🌱</div><div class="tname">Raised Bed Planter Kit</div><div class="tdesc">For rocky or waterlogged terrain. Portable bamboo-frame raised beds, easy to assemble anywhere.</div><div class="tprice">₹1,200</div><div class="tprice-note">Per 10×4 ft bed.</div><div class="ttags"><span class="ptag ptag-org">Difficult Terrain</span><span class="ptag ptag-org">Vegetables</span></div><div class="tai">🤖 <span>Ideal for Arunachal and Mizoram where flat land is limited. Maximises yield per square foot.</span></div></div>
+      <div class="tcard"><div class="ticon">📱</div><div class="tname">Onefarm Sensor Hub</div><div class="tdesc">Connects all farm sensors into one simple dashboard. Works offline and syncs when signal returns.</div><div class="tprice">₹1,800</div><div class="tprice-note">App-based. Free for 1 year.</div><div class="ttags"><span class="ptag ptag-org">IoT</span><span class="ptag ptag-org">All Farms</span></div><div class="tai">🤖 <span>Built for NER's patchy connectivity. Works offline and syncs later — no data lost in dead zones.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IT FAST TRACK -->
+<section class="sec alt-bg" id="fasttrack">
+  <div class="sec-inner">
+    <div class="ft-grid">
+      <div>
+        <div class="ft-badge-wrap">💼 For the Returning Professional</div>
+        <h2 class="ft-title">You left IT.<br>The land waited.<br><em>Farm smart now.</em></h2>
+        <p class="ft-sub">Post-AI job disruption, thousands of professionals are returning to ancestral land. Onefarm compresses a decade of agricultural learning into a structured fast-track — with data, mentorship, and market access from day one.</p>
+        <div class="ftsteps">
+          <div class="ftstep"><div class="ftstep-n">1</div><div class="ftstep-b"><h4>Land & Soil Assessment</h4><p>AI analyses your land size, terrain and water access to identify the highest-ROI crops for your plot.</p></div></div>
+          <div class="ftstep"><div class="ftstep-n">2</div><div class="ftstep-b"><h4>Crop Selection & Season Plan</h4><p>Get a 12-month crop calendar with expected yield, input costs, and revenue projections.</p></div></div>
+          <div class="ftstep"><div class="ftstep-n">3</div><div class="ftstep-b"><h4>Market Connection Before You Grow</h4><p>Pre-list your upcoming harvest and lock in buyers before planting — eliminating price risk.</p></div></div>
+          <div class="ftstep"><div class="ftstep-n">4</div><div class="ftstep-b"><h4>Curated Tech for Your Farm</h4><p>Affordable technology matched to your crop — soil sensors, smart irrigation, weather stations.</p></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="roi-card">
+          <h3>Farm ROI Calculator</h3>
+          <p>Estimate your return from NER farming — real crop prices, organic premium included.</p>
+          <label style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:7px">Select Crop</label>
+          <select class="crop-sel" id="crop-sel" onchange="calcROI()">
+            <option value="8000">King Chilli (Bhut Jolokia)</option>
+            <option value="4000">Lakadong Turmeric</option>
+            <option value="6000">Large Cardamom (Sikkim)</option>
+            <option value="3500">Chakhao Black Rice</option>
+            <option value="2500">Assam Ginger</option>
+            <option value="5000">Kachai Lemon</option>
+          </select>
+          <div class="slider-row">
+            <div class="slider-lbl"><span style="color:var(--muted)">Land Size</span><span id="lv">2 acres</span></div>
+            <input type="range" id="ls" min="1" max="20" value="2" oninput="calcROI()">
+          </div>
+          <div class="slider-row">
+            <div class="slider-lbl"><span style="color:var(--muted)">Initial Investment</span><span id="iv">₹1.5L</span></div>
+            <input type="range" id="is" min="1" max="20" value="5" oninput="calcROI()">
+          </div>
+          <div class="roi-result">
+            <div class="roi-lbl">Estimated Year 1 Revenue</div>
+            <div class="roi-val" id="rv">₹16L</div>
+            <div class="roi-note" id="rn">Based on avg market price · Organic premium included</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HERITAGE VAULT -->
+<section class="sec" id="heritage">
+  <div class="sec-inner">
+    <div class="heritage-hd">
+      <div>
+        <div class="sec-tag">🧬 Heritage Vault</div>
+        <h2 class="sec-title">Seeds that carry<br><em>generations.</em></h2>
+        <p class="sec-sub">Genetically unmodified. Family-preserved. Onefarm is documenting NER's rarest seed lineages before they are lost.</p>
+      </div>
+      <div class="heritage-count"><div class="num">127</div><div class="lbl">heirloom varieties<br>documented</div></div>
+    </div>
+    <div class="hgrid">
+      <div class="hcard"><div class="hem">🌾</div><div><div class="hname">Bora Saul</div><div class="hlocal">বোৰা চাউল · Assam</div><div class="hdesc">Glutinous heirloom rice used in festivals and Bihu celebrations. Preserved in Assam for 400+ years.</div><div class="htags"><span class="ptag ptag-gi">Heirloom</span><span class="ptag ptag-gi">GI Tagged</span></div></div></div>
+      <div class="hcard"><div class="hem">🫙</div><div><div class="hname">Joha Rice</div><div class="hlocal">যোহা চাউল · Assam</div><div class="hdesc">Aromatic scented rice with a natural floral fragrance. Scientifically documented as genetically distinct.</div><div class="htags"><span class="ptag ptag-gi">Aromatic</span><span class="ptag ptag-gi">Heirloom</span></div></div></div>
+      <div class="hcard"><div class="hem">🌶️</div><div><div class="hname">Umorok Chilli</div><div class="hlocal">উমারোক · Manipur</div><div class="hdesc">Manipur's own ultra-hot chilli. Wrinkled, cherry-shaped, genetically distinct from Bhut Jolokia.</div><div class="htags"><span class="ptag ptag-gi">GI Pending</span><span class="ptag ptag-gi">Rare</span></div></div></div>
+      <div class="hcard"><div class="hem">🍃</div><div><div class="hname">Mizo Dawl Bi</div><div class="hlocal">ডাওল বি · Mizoram</div><div class="hdesc">Traditional Mizoram leafy vegetable grown in jhum plots. Seeds passed through Mizo families for centuries.</div><div class="htags"><span class="ptag ptag-gi">Jhum Crop</span><span class="ptag ptag-gi">Endangered</span></div></div></div>
+      <div class="hcard"><div class="hem">🌱</div><div><div class="hname">Adi Apong Rice</div><div class="hlocal">Apong Variety · Arunachal</div><div class="hdesc">Used to brew traditional Apong (rice beer) by the Adi tribe. Specific fermentation properties, irreplaceable.</div><div class="htags"><span class="ptag ptag-gi">Tribal Heritage</span><span class="ptag ptag-gi">Rare</span></div></div></div>
+      <div class="hcard"><div class="hem">🥔</div><div><div class="hname">Naga Highland Potato</div><div class="hlocal">Naga Aloo · Nagaland</div><div class="hdesc">High-altitude Nagaland variety — smaller, denser, nutty flavour. Genetically adapted to 1500m+ elevation.</div><div class="htags"><span class="ptag ptag-gi">Altitude Adapted</span><span class="ptag ptag-gi">Heirloom</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="fgrid">
+      <div class="fbrand">
+        <div class="logo" style="margin-bottom:4px">
+          <svg viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:44px;width:auto">
+            <circle cx="60" cy="55" r="52" fill="#5DB040"/>
+            <circle cx="60" cy="55" r="28" fill="#060D04"/>
+            <clipPath id="oClip2"><circle cx="60" cy="55" r="52"/></clipPath>
+            <g clip-path="url(#oClip2)">
+              <ellipse cx="60" cy="72" rx="38" ry="22" fill="#3A6B2A"/>
+              <path d="M22 78 Q60 68 98 78" stroke="#5DB040" stroke-width="4" fill="none"/>
+              <path d="M18 86 Q60 74 102 86" stroke="#5DB040" stroke-width="4.5" fill="none"/>
+              <path d="M14 95 Q60 82 106 95" stroke="#7ED957" stroke-width="3.5" fill="none"/>
+              <path d="M10 104 Q60 90 110 104" stroke="#5DB040" stroke-width="3" fill="none"/>
+              <circle cx="60" cy="55" r="28" fill="#060D04"/>
+            </g>
+            <text x="60" y="122" text-anchor="middle" font-family="DM Sans,sans-serif" font-weight="800" font-size="22" fill="#7B3A10">One Farm</text>
+          </svg>
+        </div>
+        <p>AI-powered agricultural intelligence for the farmers of Northeast India. Built with deep respect for the land, the people, and the heritage of the region.</p>
+      </div>
+      <div class="fcol"><h4>Platform</h4><a href="#">AI Advisor</a><a href="#">Crop Calendar</a><a href="#">Produce Intel</a><a href="#">Market Access</a><a href="#">Farm Tech</a><a href="#">Heritage Vault</a></div>
+      <div class="fcol"><h4>Farmers</h4><a href="#">Join as Farmer</a><a href="#">List Produce</a><a href="#">IT Fast-Track</a><a href="#">Crop Calendar</a><a href="#">Export Guide</a></div>
+      <div class="fcol"><h4>NER States</h4><a href="#">Assam</a><a href="#">Meghalaya</a><a href="#">Manipur</a><a href="#">Nagaland</a><a href="#">+ 4 More</a></div>
+    </div>
+    <div class="fbot"><p>© 2026 Onefarm · Northeast India · Built for the farmers of the hills</p><div class="fleg"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a></div></div>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="overlay" id="modal">
+  <div class="modal">
+    <h2>Activate AI ⚡</h2>
+    <p>Enter your API key. It stays in your browser — never sent to our servers.</p>
+    <div class="api-tabs">
+      <button class="atab on" onclick="selProv('gemini',this)">🤖 Gemini (Primary)</button>
+      <button class="atab" onclick="selProv('openai',this)">OpenAI (Fallback)</button>
+    </div>
+    <input class="akey" id="akey" type="password" placeholder="Paste your API key here...">
+    <div class="anote" id="anote">Get your free Gemini key at <strong>aistudio.google.com</strong> → API Keys. The free tier is enough for farming queries.</div>
+    <button class="cta-main" style="width:100%;justify-content:center" onclick="saveKey()">Activate →</button>
+    <button class="pill pill-outline" style="width:100%;justify-content:center;margin-top:10px" onclick="closeModal()">Maybe Later</button>
+  </div>
+</div>
+
+<script>
+/* ── DATA ── */
+const WX = [
+  {lat:26.1445,lon:91.7362},{lat:25.5788,lon:91.8933},{lat:24.817,lon:93.9368},
+  {lat:25.6751,lon:94.1086},{lat:27.3314,lon:88.6138},{lat:23.7307,lon:92.7173},
+  {lat:23.8315,lon:91.2868},{lat:27.0844,lon:93.6053}
+];
+const WC={0:'☀️',1:'🌤',2:'⛅',3:'☁️',45:'🌫',51:'🌦',61:'🌧',80:'🌦',95:'⛈'};
+
+const PRODUCES=[
+  {name:'Bhut Jolokia',local:'ভূত জলকীয়া',em:'🌶️',state:'Assam/Nagaland',tags:['gi','spice'],desc:"World's hottest chilli. Guinness record holder. Prized in global hot sauce industry and used medicinally.",price:'₹800–1,200/kg',season:'Sep–Nov',bg:'linear-gradient(135deg,#3D0A00,#6B1A00)',badge:"World's Hottest"},
+  {name:'Lakadong Turmeric',local:'লাকাডং হালদি',em:'💛',state:'Meghalaya',tags:['gi','herb'],desc:'Highest curcumin content turmeric in the world (6.8–7.5%). Prized by Ayurveda and global wellness.',price:'₹300–600/kg',season:'Dec–Feb',bg:'linear-gradient(135deg,#2D1A00,#4D2E00)',badge:'7.5% Curcumin'},
+  {name:'Chakhao Black Rice',local:'চাখাও অম্বি',em:'🖤',state:'Manipur',tags:['gi','grain'],desc:'Ancient Manipuri heirloom black rice with deep purple anthocyanins. Used in royal feasts and ceremonies.',price:'₹250–400/kg',season:'Oct–Nov',bg:'linear-gradient(135deg,#1A0A2E,#2D1A4E)',badge:'Heirloom'},
+  {name:'Large Cardamom',local:'ठूलो अलैंची',em:'💚',state:'Sikkim',tags:['gi','spice'],desc:'Sikkim grows 80% of India's large cardamom. Smoked over pinewood — distinct aroma prized across Asia.',price:'₹1,200–2,000/kg',season:'Aug–Oct',bg:'linear-gradient(135deg,#0A2D0A,#1A4D1A)',badge:'80% India Supply'},
+  {name:'Kachai Lemon',local:'কাচাই নেমু',em:'🍋',state:'Manipur',tags:['gi','fruit'],desc:'GI tagged lemon of Manipur. Near seedless, thinnest skin in the lemon world. Extraordinary juice yield.',price:'₹80–140/kg',season:'Nov–Jan',bg:'linear-gradient(135deg,#2D2D00,#4D4A00)',badge:'Near Seedless'},
+  {name:'Assam Orthodox Tea',local:'আসাম চাহ',em:'🍵',state:'Assam',tags:['gi','herb'],desc:'The original breakfast tea. Assam's Orthodox teas account for 55% of India's total tea production.',price:'₹500–3,000/kg',season:'Mar–Nov',bg:'linear-gradient(135deg,#1A0D00,#3D1A00)',badge:'55% India Tea'},
+  {name:'Queen Pineapple',local:'রাণী আনারস',em:'🍍',state:'Tripura',tags:['gi','fruit'],desc:'Sweet, honey-like golden flesh. Queen variety from Tripura — smaller than common pineapples, far sweeter.',price:'₹30–60/piece',season:'May–Jul',bg:'linear-gradient(135deg,#2D2000,#4D3500)',badge:'GI Tagged'},
+  {name:'Naga Mircha',local:'নাগা মির্চা',em:'🔥',state:'Nagaland',tags:['gi','spice'],desc:'Nagaland's legendary chilli. Close variant of Bhut Jolokia — the backbone of Naga cuisine globally.',price:'₹600–1,000/kg',season:'Sep–Oct',bg:'linear-gradient(135deg,#2D0A00,#5C1A00)',badge:'Nagaland's Finest'},
+];
+
+/* ── WEATHER ── */
+async function fetchWx(){
+  WX.forEach(async(s,i)=>{
+    try{
+      const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${s.lat}&longitude=${s.lon}&current=temperature_2m,weather_code&timezone=Asia%2FKolkata`);
+      const d=await r.json();
+      const c=d.current;
+      const el=document.getElementById('wx-'+i);
+      if(el){
+        el.textContent=Math.round(c.temperature_2m)+'°C';
+        el.nextElementSibling.textContent=(WC[c.weather_code]||'🌡')+' Now';
+      }
+    }catch(e){}
+  });
+}
+
+/* ── PRODUCE RENDER ── */
+function renderProduces(filter='all'){
+  const g=document.getElementById('pgrid');
+  if(!g)return;
+  const list=filter==='all'?PRODUCES:PRODUCES.filter(p=>p.tags.includes(filter));
+  g.innerHTML=list.map(p=>`
+    <div class="pcard">
+      ${p.badge?`<div class="pcard-badge">${p.badge}</div>`:''}
+      <div class="pcard-img" style="background:${p.bg}">${p.em}</div>
+      <div class="pcard-body">
+        <div class="ptags">${p.tags.includes('gi')?'<span class="ptag ptag-gi">🏷 GI Tagged</span>':''}<span class="ptag ptag-org">🌿 Organic</span><span class="ptag ptag-st">${p.state}</span></div>
+        <div class="pname">${p.name}</div>
+        <div class="plocal">${p.local}</div>
+        <div class="pdesc">${p.desc}</div>
+        <div class="pmeta"><div class="pprice">${p.price}</div><div class="pseas">🗓 ${p.season}</div></div>
+      </div>
+    </div>`).join('');
+}
+
+function filterP(type,btn){
+  document.querySelectorAll('.fb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderProduces(type);
+}
+
+/* ── ROI CALCULATOR ── */
+function calcROI(){
+  const land=parseInt(document.getElementById('ls').value);
+  const ppA=parseInt(document.getElementById('crop-sel').value);
+  const inv=parseInt(document.getElementById('is').value);
+  document.getElementById('lv').textContent=land+(land===1?' acre':' acres');
+  document.getElementById('iv').textContent='₹'+(inv*30000/100000).toFixed(1)+'L';
+  const rev=land*ppA;
+  document.getElementById('rv').textContent=rev>=100000?'₹'+(rev/100000).toFixed(1)+'L':'₹'+rev.toLocaleString('en-IN');
+  const cn=document.getElementById('crop-sel');
+  document.getElementById('rn').textContent='Based on avg market price for '+cn.options[cn.selectedIndex].text.split('(')[0].trim()+' · Organic premium included';
+}
+
+/* ── AI CHAT ── */
+const SYS=`You are Onefarm's AI Agricultural Advisor for Northeast India (NER).
+You have deep expertise in the agriculture of all 8 NER states: Assam, Meghalaya, Manipur, Nagaland, Mizoram, Arunachal Pradesh, Tripura, and Sikkim.
+Key knowledge:
+- NER terrain is highly diverse: hill farms, valley plains, high-altitude farms, flood-prone areas, jhum cultivation
+- Most NER agriculture is naturally organic — preserve this for GI compliance and premium pricing
+- Key GI-tagged produces: Bhut Jolokia, Lakadong Turmeric, Chakhao Black Rice, Large Cardamom, Kachai Lemon, Assam Tea, Tripura Queen Pineapple, Naga Mircha
+- Heirloom seeds are culturally precious — encourage preservation
+- Use simple, actionable language. Farmers may have low tech literacy.
+- Default to organic, traditional, low-chemical advice
+- March context: late winter/early spring — ginger planting in Meghalaya, King Chilli seedling prep in Nagaland, cardamom pruning in Sikkim
+Always be warm, respectful and practical. Keep responses concise.`;
+
+let hist=[];
+let prov='gemini';
+
+function addMsg(role,text){
+  const c=document.getElementById('chat-msgs');
+  const d=document.createElement('div');
+  d.className='msg '+(role==='user'?'user':'ai');
+  d.textContent=text;
+  c.appendChild(d);
+  c.scrollTop=c.scrollHeight;
+}
+function showTyping(){
+  const c=document.getElementById('chat-msgs');
+  const d=document.createElement('div');
+  d.className='typing-wrap';d.id='ty';
+  d.innerHTML='<div class="typing"><span></span><span></span><span></span></div>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function hideTyping(){const t=document.getElementById('ty');if(t)t.remove();}
+
+async function callGemini(msg){
+  const k=localStorage.getItem('of_gkey');
+  if(!k)throw new Error('NK');
+  const msgs=hist.map(m=>({role:m.r,parts:[{text:m.c}]}));
+  msgs.push({role:'user',parts:[{text:msg}]});
+  const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${k}`,{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({system_instruction:{parts:[{text:SYS}]},contents:msgs,generationConfig:{maxOutputTokens:500,temperature:0.7}})
+  });
+  if(!r.ok)throw new Error('GE');
+  const d=await r.json();
+  return d.candidates[0].content.parts[0].text;
+}
+
+async function callOAI(msg){
+  const k=localStorage.getItem('of_okey');
+  if(!k)throw new Error('NK');
+  const msgs=[{role:'system',content:SYS}];
+  hist.forEach(m=>msgs.push({role:m.r==='user'?'user':'assistant',content:m.c}));
+  msgs.push({role:'user',content:msg});
+  const r=await fetch('https://api.openai.com/v1/chat/completions',{
+    method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+k},
+    body:JSON.stringify({model:'gpt-4o-mini',messages:msgs,max_tokens:400})
+  });
+  if(!r.ok)throw new Error('OE');
+  const d=await r.json();
+  return d.choices[0].message.content;
+}
+
+async function sendMsg(){
+  const inp=document.getElementById('chat-in');
+  const t=inp.value.trim();if(!t)return;
+  inp.value='';
+  document.querySelector('.chat-chips').style.display='none';
+  addMsg('user',t);
+  hist.push({r:'user',c:t});
+  const gk=localStorage.getItem('of_gkey');
+  const ok=localStorage.getItem('of_okey');
+  if(!gk&&!ok){addMsg('ai','⚡ Please add your API key via the "Setup AI" button above to activate the advisor.');return;}
+  showTyping();
+  try{
+    const rep=gk?await callGemini(t):await callOAI(t);
+    hideTyping();addMsg('ai',rep);hist.push({r:'model',c:rep});
+  }catch(e){
+    hideTyping();
+    if(e.message==='NK'){addMsg('ai','⚡ API key not set. Click "Setup AI" to add your key.');}
+    else if(gk&&ok){try{const rep=await callOAI(t);addMsg('ai','(via OpenAI) '+rep);hist.push({r:'model',c:rep});}catch{addMsg('ai','❌ Both AI services failed. Check your keys and connection.');}}
+    else{addMsg('ai','❌ Could not connect to AI. Check your key and internet connection.');}
+  }
+}
+
+function sendSug(btn){document.getElementById('chat-in').value=btn.textContent;sendMsg();}
+
+/* ── MODAL ── */
+let activeProv='gemini';
+function openModal(){
+  document.getElementById('modal').classList.add('open');
+  const k=localStorage.getItem('of_gkey');
+  if(k)document.getElementById('akey').value=k;
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+function selProv(p,btn){
+  activeProv=p;
+  document.querySelectorAll('.atab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('akey').value=localStorage.getItem(p==='gemini'?'of_gkey':'of_okey')||'';
+  document.getElementById('anote').innerHTML=p==='gemini'
+    ?'Get your free Gemini key at <strong>aistudio.google.com</strong> → API Keys. Free tier works for farming queries.'
+    :'Get your OpenAI key at <strong>platform.openai.com</strong> → API Keys. Used as fallback.';
+}
+function saveKey(){
+  const k=document.getElementById('akey').value.trim();
+  if(!k){alert('Please enter an API key.');return;}
+  localStorage.setItem(activeProv==='gemini'?'of_gkey':'of_okey',k);
+  closeModal();
+  const n=document.getElementById('key-notice');if(n)n.style.display='none';
+  addMsg('ai','✅ '+(activeProv==='gemini'?'Gemini':'OpenAI')+' activated! Ask me anything about your farm, crop, or market.');
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+/* ── CROP CALENDAR DATA ── */
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const NOW_M = new Date().getMonth();
+
+const ACT = { rest:'rest', sow:'sow', tend:'tend', harvest:'harvest', prep:'prep', flush:'flush' };
+const _R=ACT.rest, _S=ACT.sow, _T=ACT.tend, _H=ACT.harvest, _P=ACT.prep, _F=ACT.flush;
+
+const CAL_DATA = {
+  assam:{
+    label:'Assam', emoji:'🌿',
+    terrain:'Brahmaputra valley, floodplains, foothills',
+    rainfall:'2,200mm avg. Monsoon Jun–Sep heavy',
+    tip:'March is prime season start — transplant seedlings before first monsoon rains in June',
+    crops:[
+      {name:'Bhut Jolokia',local:'ভূত জলকীয়া',em:'🌶️',
+       m:[
+         {a:_P,n:'Prepare nursery beds, sow seeds indoors'},
+         {a:_S,n:'Prick out seedlings, harden in partial shade'},
+         {a:_S,n:'Transplant to field after last cold nights'},
+         {a:_T,n:'Mulch heavily, first fertiliser application'},
+         {a:_T,n:'Stake plants, watch for aphids'},
+         {a:_T,n:'Monsoon — improve drainage, fungal watch'},
+         {a:_T,n:'Pinch early flowers for plant strength'},
+         {a:_T,n:'Heavy fruiting begins, stop fertilising'},
+         {a:_H,n:'First harvest — pick bright red fruits'},
+         {a:_H,n:'Peak harvest month — highest capsaicin'},
+         {a:_H,n:'Final harvest, save seeds from best plants'},
+         {a:_R,n:'Clear field, compost residues'}
+       ]},
+      {name:'Assam Ginger',local:'আদা',em:'🫚',
+       m:[
+         {a:_R,n:'Rhizomes in cold storage'},
+         {a:_P,n:'Select disease-free seed rhizomes'},
+         {a:_S,n:'Plant rhizomes in raised beds — 20cm deep'},
+         {a:_S,n:'Mulch with dried leaves to retain moisture'},
+         {a:_T,n:'First sprouting — light weeding only'},
+         {a:_T,n:'Earthing up, remove weeds'},
+         {a:_T,n:'Peak growth — full canopy'},
+         {a:_T,n:'Reduce water, allow soil to partially dry'},
+         {a:_T,n:'Leaves begin yellowing — good sign'},
+         {a:_T,n:'Stop watering, let rhizomes mature'},
+         {a:_H,n:'Dig carefully after leaves dry completely'},
+         {a:_H,n:'Cure in shade 2 weeks before market'}
+       ]},
+      {name:'Assam Orthodox Tea',local:'আসাম চাহ',em:'🍵',
+       m:[
+         {a:_R,n:'Dormancy period — prune and shape bushes'},
+         {a:_P,n:'Heavy pruning complete, apply fertiliser'},
+         {a:_F,n:'Spring flush — finest quality first pluck'},
+         {a:_F,n:'First flush peak — highest market price'},
+         {a:_T,n:'Second flush begins'},
+         {a:_F,n:'Second flush peak — Monsoon flush'},
+         {a:_T,n:'Rain flush — continuous plucking every 7 days'},
+         {a:_T,n:'Monsoon flush continues'},
+         {a:_T,n:'Quality improves as monsoon retreats'},
+         {a:_F,n:'Autumn flush — distinctive mellow character'},
+         {a:_T,n:'Final pluckings, prepare for dormancy'},
+         {a:_R,n:'Rest period begins'}
+       ]},
+      {name:'Mustard',local:'সৰিয়হ',em:'🌼',
+       m:[
+         {a:_R,n:'Land drying after paddy harvest'},
+         {a:_R,n:'Land preparation, add compost'},
+         {a:_R,n:'Too hot — wait'},
+         {a:_R,n:'Too hot — wait'},
+         {a:_R,n:'Too hot — wait'},
+         {a:_R,n:'Too wet — wait'},
+         {a:_R,n:'Too wet — wait'},
+         {a:_R,n:'Wait for post-monsoon dry'},
+         {a:_P,n:'Deep plough after monsoon, add lime'},
+         {a:_S,n:'Broadcast sow after October rains clear'},
+         {a:_T,n:'Thin seedlings, apply first nitrogen dose'},
+         {a:_H,n:'Harvest when 75% pods turn golden'}
+       ]}
+    ]
+  },
+  meghalaya:{
+    label:'Meghalaya', emoji:'💛',
+    terrain:'East Khasi Hills, Jaintia Hills, Garo Hills — high rainfall plateau',
+    rainfall:'Cherrapunji receives 11,000mm+. Shade cultivation essential',
+    tip:'Meghalaya\'s acidic soil (pH 4.5–5.5) is ideal for turmeric — do not lime unless advised',
+    crops:[
+      {name:'Lakadong Turmeric',local:'লাকাডং হালদি',em:'💛',
+       m:[
+         {a:_R,n:'Rhizomes curing in storage'},
+         {a:_R,n:'Select mother rhizomes for replanting'},
+         {a:_P,n:'Deep dig beds, add organic matter and sand'},
+         {a:_S,n:'Plant rhizomes — 5cm deep, 30cm apart'},
+         {a:_T,n:'Mulch with green leaves — critical in Meghalaya rain'},
+         {a:_T,n:'Earthing up — mound soil around stems'},
+         {a:_T,n:'Weed carefully — don\'t disturb shallow roots'},
+         {a:_T,n:'Reduce weeding, canopy closes'},
+         {a:_T,n:'Leaves begin to turn yellow'},
+         {a:_T,n:'Stop all irrigation — dry-down period'},
+         {a:_R,n:'Wait for complete leaf dry'},
+         {a:_H,n:'Dig after full leaf die-back — Jan harvest for highest curcumin'}
+       ]},
+      {name:'Khasi Mandarin',local:'খাচি মান্দারিন',em:'🍊',
+       m:[
+         {a:_P,n:'Pruning of old wood, apply copper fungicide'},
+         {a:_P,n:'Apply potassium-rich fertiliser pre-bloom'},
+         {a:_F,n:'Flowering — critical — protect from late cold'},
+         {a:_T,n:'Fruit set — thin if overcrowded'},
+         {a:_T,n:'Young fruit developing — no stress'},
+         {a:_T,n:'Monsoon — watch for greening disease'},
+         {a:_T,n:'Fruit sizing phase — ensure drainage'},
+         {a:_T,n:'Colour break begins'},
+         {a:_T,n:'Fruit ripening — reduce water'},
+         {a:_H,n:'Early harvest for green fruit (market preference)'},
+         {a:_H,n:'Peak harvest — best colour and Brix'},
+         {a:_R,n:'Post-harvest care, apply fertiliser'}
+       ]},
+      {name:'Meghalaya Ginger',local:'আদা',em:'🫚',
+       m:[
+         {a:_R,n:'Storage and selection of seed rhizomes'},
+         {a:_R,n:'Treat rhizomes with wood ash before storage'},
+         {a:_P,n:'Prepare raised beds — essential for Meghalaya drainage'},
+         {a:_S,n:'Plant before monsoon arrives — May deadline'},
+         {a:_T,n:'First shoots — mulch before monsoon'},
+         {a:_T,n:'Heavy rain — ensure no waterlogging'},
+         {a:_T,n:'Earthing up mid-monsoon'},
+         {a:_T,n:'Reduce water application'},
+         {a:_T,n:'Yellowing signals maturity coming'},
+         {a:_T,n:'Drying down phase'},
+         {a:_H,n:'Harvest mature ginger — high dry matter'},
+         {a:_H,n:'Final harvest and storage'}
+       ]},
+      {name:'Pineapple',local:'আনাৰস',em:'🍍',
+       m:[
+         {a:_T,n:'Ratoon management — remove excess suckers'},
+         {a:_T,n:'Apply potassium fertiliser to ratoon crop'},
+         {a:_T,n:'Weed between rows'},
+         {a:_S,n:'Plant new suckers for next cycle'},
+         {a:_T,n:'New plants establishing'},
+         {a:_H,n:'Harvest ratoon crop — June peak for Meghalaya'},
+         {a:_H,n:'Peak harvest — Queen variety sweetest now'},
+         {a:_T,n:'New plant growth — apply fertiliser'},
+         {a:_T,n:'Weed management'},
+         {a:_T,n:'Mulching before dry season'},
+         {a:_T,n:'Flower induction if needed'},
+         {a:_T,n:'Fruiting stage'}
+       ]}
+    ]
+  },
+  manipur:{
+    label:'Manipur', emoji:'🖤',
+    terrain:'Imphal valley surrounded by hills. Loktak Lake basin. Hill districts 90% of area',
+    rainfall:'1,467mm avg. Distinct wet and dry seasons',
+    tip:'The Imphal valley has fertile alluvial soil — ideal for Black Rice. Hill districts better for chilli',
+    crops:[
+      {name:'Chakhao Black Rice',local:'চাখাও অম্বি',em:'🖤',
+       m:[
+         {a:_R,n:'Field lies fallow — compost application'},
+         {a:_R,n:'Land preparation begins'},
+         {a:_P,n:'Deep plough, apply farmyard manure'},
+         {a:_P,n:'Prepare nursery seedbeds — April target'},
+         {a:_S,n:'Sow nursery — transplant in 30 days'},
+         {a:_S,n:'Transplant 25–30 day seedlings to main field'},
+         {a:_T,n:'Establish — flood irrigate, weed'},
+         {a:_T,n:'Tillering stage — critical water management'},
+         {a:_T,n:'Panicle initiation — no stress period'},
+         {a:_T,n:'Milky grain stage — birds watch'},
+         {a:_H,n:'Harvest when 80% grains turn black-purple'},
+         {a:_R,n:'Thresh carefully — traditional sun-drying'}
+       ]},
+      {name:'Kachai Lemon',local:'কাচাই নেমু',em:'🍋',
+       m:[
+         {a:_T,n:'Apply compost around drip zone'},
+         {a:_P,n:'Light pruning of dead wood'},
+         {a:_F,n:'Flowering — spray seaweed extract for fruit set'},
+         {a:_T,n:'Fruit set — thin overcrowded clusters'},
+         {a:_T,n:'Young fruit swelling'},
+         {a:_T,n:'Monsoon — spray copper for canker prevention'},
+         {a:_T,n:'Fruit sizing — peak irrigation'},
+         {a:_T,n:'Slow down water'},
+         {a:_T,n:'Colour break — near-seedless skin thinning'},
+         {a:_T,n:'Pre-harvest check — squeeze test'},
+         {a:_H,n:'November harvest — highest juice content'},
+         {a:_H,n:'Final harvest — save for market premium'}
+       ]},
+      {name:'Umorok Chilli',local:'উমারোক',em:'🔥',
+       m:[
+         {a:_R,n:'Rest — prepare compost'},
+         {a:_P,n:'Sow nursery indoors'},
+         {a:_S,n:'Transplant hardened seedlings to field'},
+         {a:_T,n:'Establish, first weeding'},
+         {a:_T,n:'Stake plants, remove suckers'},
+         {a:_T,n:'Monsoon care — improve drainage'},
+         {a:_T,n:'Pinch first flush for bushier plant'},
+         {a:_T,n:'Heavy fruiting — stop nitrogen'},
+         {a:_H,n:'First harvest of mature fruits'},
+         {a:_H,n:'Peak harvest — characteristically wrinkled'},
+         {a:_H,n:'Final harvest — save best seeds'},
+         {a:_R,n:'Clear and compost field'}
+       ]},
+      {name:'Yongchak (Stink Bean)',local:'য়ংচাক',em:'🫘',
+       m:[
+         {a:_R,n:'Trees dormant — prune dead branches'},
+         {a:_T,n:'New leaf flush — apply potassium'},
+         {a:_F,n:'Flowering — do not disturb'},
+         {a:_T,n:'Pod set — first small pods'},
+         {a:_T,n:'Pod development — peak demand season ahead'},
+         {a:_H,n:'First harvest — tender young pods'},
+         {a:_H,n:'Peak harvest — pods at full size'},
+         {a:_H,n:'Pods maturing — harvest before overmature'},
+         {a:_R,n:'Late pods — seed saving'},
+         {a:_R,n:'Tree rest period'},
+         {a:_R,n:'Prune for shape'},
+         {a:_R,n:'Apply organic compost at root zone'}
+       ]}
+    ]
+  },
+  nagaland:{
+    label:'Nagaland', emoji:'🌶️',
+    terrain:'Naga Hills — steep terrain 1000–3000m elevation. Terrace farming dominant',
+    rainfall:'1,800–2,500mm. Heavy May–September',
+    tip:'Terrace farming in Nagaland requires minimal tillage — root disturbance degrades terraces built over generations',
+    crops:[
+      {name:'Naga King Chilli',local:'নাগা মির্চা',em:'🌶️',
+       m:[
+         {a:_P,n:'Prepare nursery mix — use last year\'s chilli bed soil'},
+         {a:_S,n:'Sow seeds in nursery — 6 weeks before transplant'},
+         {a:_S,n:'Transplant to terrace field — after last cold'},
+         {a:_T,n:'First weeding, apply wood ash around base'},
+         {a:_T,n:'Stake before monsoon winds'},
+         {a:_T,n:'Monsoon — ensure terrace drainage clear'},
+         {a:_T,n:'Fruiting begins — highest heat period'},
+         {a:_T,n:'Heavy fruit load — check stakes'},
+         {a:_H,n:'First harvest — red mature fruits'},
+         {a:_H,n:'Peak harvest — GI grade fruits'},
+         {a:_H,n:'Final harvest — smoke-dry surplus'},
+         {a:_R,n:'Clear field, compost green material'}
+       ]},
+      {name:'Bamboo Shoot',local:'বাঁহৰ গুলি',em:'🎋',
+       m:[
+         {a:_R,n:'Bamboo grove dormant — no harvest'},
+         {a:_R,n:'New root growth underground'},
+         {a:_R,n:'Pre-emergence — watch for first tips'},
+         {a:_R,n:'First shoots possible in warm years'},
+         {a:_T,n:'Thin dense clumps — remove old culms'},
+         {a:_H,n:'Shoot harvest — cut at 30cm height'},
+         {a:_H,n:'Peak shoot season — ferment surplus'},
+         {a:_H,n:'Shoots hardening — harvest earlier each day'},
+         {a:_T,n:'Allow remaining shoots to mature to culm'},
+         {a:_R,n:'Culm hardening — mark for future use'},
+         {a:_R,n:'Identify culms for next year harvest'},
+         {a:_R,n:'Grove maintenance — remove dead culms'}
+       ]},
+      {name:'Naga Potato',local:'নাগা আলু',em:'🥔',
+       m:[
+         {a:_P,n:'Select seed tubers from best plants'},
+         {a:_P,n:'Chit seed potatoes in diffused light'},
+         {a:_S,n:'Plant after last frost — March window'},
+         {a:_T,n:'First earthing up when 20cm tall'},
+         {a:_T,n:'Second earthing up — mound well'},
+         {a:_T,n:'Haulm growth — late blight watch'},
+         {a:_T,n:'Tubers bulking — reduce water'},
+         {a:_H,n:'Early harvest for tender tubers — premium price'},
+         {a:_H,n:'Main harvest — cure tubers before storage'},
+         {a:_R,n:'Store in cool dark conditions'},
+         {a:_R,n:'Select seed stock for next year'},
+         {a:_R,n:'Field rest — apply green manure'}
+       ]},
+      {name:'Raja Mircha (Bhut Jolokia)',local:'ৰজা মিৰিচা',em:'🔥',
+       m:[
+         {a:_P,n:'Indoor nursery prep — 8 week lead time needed'},
+         {a:_S,n:'Sow seeds — requires warmth, cover with plastic'},
+         {a:_T,n:'Thin seedlings, begin hardening off'},
+         {a:_S,n:'Transplant to terrace after frost risk gone'},
+         {a:_T,n:'Establish — protect from heavy rain initially'},
+         {a:_T,n:'Full growth — stake and train'},
+         {a:_T,n:'Flowering and fruit set'},
+         {a:_H,n:'Green harvest if needed for fresh market'},
+         {a:_H,n:'Red harvest — full heat, GI quality'},
+         {a:_H,n:'Peak red harvest — smoke dry surplus'},
+         {a:_R,n:'Clear field, save seeds'},
+         {a:_R,n:'Winter rest'}
+       ]}
+    ]
+  },
+  mizoram:{
+    label:'Mizoram', emoji:'🍃',
+    terrain:'Lushai Hills — rolling ridges and valleys. Jhum (shifting) cultivation traditional',
+    rainfall:'2,500mm avg. March–November wet season',
+    tip:'Jhum rotation over 8–10 years is being replaced by permanent field cultivation — a key transition Onefarm supports',
+    crops:[
+      {name:'Jhum Rice',local:'ঝুম ধান',em:'🌾',
+       m:[
+         {a:_R,n:'Identify and clear new jhum plot'},
+         {a:_P,n:'Fell and dry vegetation for burning'},
+         {a:_P,n:'Controlled burn — ceremonial timing'},
+         {a:_S,n:'Broadcast sow immediately after rain — dibble method'},
+         {a:_T,n:'Weed by hand — no tilling'},
+         {a:_T,n:'Monsoon growth — rapid'},
+         {a:_T,n:'Tasselling — bird watch'},
+         {a:_T,n:'Grain fill — no intervention'},
+         {a:_T,n:'Dough stage — protect from deer'},
+         {a:_H,n:'Harvest by hand-cutting — community harvest'},
+         {a:_H,n:'Threshing and sun-drying'},
+         {a:_R,n:'Field left for natural regeneration'}
+       ]},
+      {name:'Mizo Chilli',local:'মিজো মির্চা',em:'🌶️',
+       m:[
+         {a:_R,n:'Rest period'},
+         {a:_P,n:'Prepare permanent beds — mulch heavily'},
+         {a:_S,n:'Transplant seedlings raised in nursery'},
+         {a:_T,n:'Establish — shade if needed'},
+         {a:_T,n:'Rapid growth with monsoon onset'},
+         {a:_T,n:'Pinch tops for branching'},
+         {a:_T,n:'Heavy fruiting — stake plants'},
+         {a:_H,n:'First harvest of red fruits'},
+         {a:_H,n:'Peak harvest — dry and sell'},
+         {a:_H,n:'Final harvest — smoke-dry surplus'},
+         {a:_R,n:'Field clearing and composting'},
+         {a:_R,n:'Rest and soil recovery'}
+       ]},
+      {name:'Anthurium',local:'এন্থুৰিয়াম',em:'🌸',
+       m:[
+         {a:_T,n:'Shade maintenance — replace torn shade nets'},
+         {a:_T,n:'Repot overcrowded clumps'},
+         {a:_F,n:'Flower harvest — Valentine\'s season spike'},
+         {a:_F,n:'Apply slow-release fertiliser'},
+         {a:_T,n:'New leaf growth — strong stems'},
+         {a:_T,n:'Monsoon — good humidity for anthuriums'},
+         {a:_F,n:'Mid-year flush — steady production'},
+         {a:_T,n:'Maintain 70% shade'},
+         {a:_F,n:'Autumn flush — good market'},
+         {a:_F,n:'Diwali season demand — premium prices'},
+         {a:_T,n:'Apply potassium for winter flowering'},
+         {a:_F,n:'Christmas season flush — export quality'}
+       ]},
+      {name:'Mizoram Ginger',local:'আদা',em:'🫚',
+       m:[
+         {a:_R,n:'Rhizomes in storage'},
+         {a:_P,n:'Prepare forest soil beds — rich organic matter'},
+         {a:_T,n:'Harden seed rhizomes in partial shade'},
+         {a:_S,n:'Plant with monsoon onset — April target'},
+         {a:_T,n:'Mulch immediately with bamboo leaves'},
+         {a:_T,n:'Earthing up during heavy rain season'},
+         {a:_T,n:'Full canopy — minimal intervention'},
+         {a:_T,n:'Reduce watering — drying down'},
+         {a:_T,n:'Leaves yellowing — close to harvest'},
+         {a:_R,n:'Wait for complete die-back'},
+         {a:_H,n:'Harvest and cure'},
+         {a:_H,n:'Market the premium dry ginger'}
+       ]}
+    ]
+  },
+  arunachal:{
+    label:'Arunachal Pradesh', emoji:'🏔️',
+    terrain:'Eastern Himalayas — altitudes 200–7000m. Tribal agriculture diverse by altitude',
+    rainfall:'Varies drastically — 1,000mm (north) to 4,000mm (south). Altitude-specific crops',
+    tip:'Match crops strictly to altitude — large cardamom only above 1,000m. Below 600m is tropical zone',
+    crops:[
+      {name:'Large Cardamom',local:'ठूलो अलैंची',em:'💚',
+       m:[
+         {a:_P,n:'Prune old clumps — remove dead tillers'},
+         {a:_P,n:'Apply compost to rhizome zone — 10kg/plant'},
+         {a:_T,n:'New tiller growth — protect from frost'},
+         {a:_T,n:'Tiller establishment — light weeding'},
+         {a:_T,n:'Peak vegetative growth — shade tree management'},
+         {a:_T,n:'Inflorescence emergence — mark heavy bearing clumps'},
+         {a:_T,n:'Fruit development — critical water period'},
+         {a:_H,n:'Early harvest — cure immediately'},
+         {a:_H,n:'Peak harvest — bhatti (fire-curing) season'},
+         {a:_H,n:'Late harvest — highest quality late capsules'},
+         {a:_P,n:'Post-harvest clump division for expansion'},
+         {a:_P,n:'Suckers transplanted to new plots'}
+       ]},
+      {name:'Adi Apong Rice',local:'Apong Variety',em:'🍚',
+       m:[
+         {a:_R,n:'Community granary management — seed selection'},
+         {a:_P,n:'Field clearing and burning (low-altitude jhum)'},
+         {a:_P,n:'Soil preparation and fencing'},
+         {a:_S,n:'Sow before monsoon — traditional April date'},
+         {a:_T,n:'Weed by hand — no herbicide'},
+         {a:_T,n:'Monsoon growth — rapid canopy'},
+         {a:_T,n:'Tasselling — bird control'},
+         {a:_T,n:'Grain fill — community watch'},
+         {a:_T,n:'Maturing — reduce bird damage'},
+         {a:_H,n:'Harvest — reserve specific grain for Apong brewing'},
+         {a:_H,n:'Threshing and storage in granary'},
+         {a:_R,n:'Brewing Apong — ritual fermentation'}
+       ]},
+      {name:'Temperate Fruits (Apple/Pear)',local:'Temperate Zone',em:'🍎',
+       m:[
+         {a:_P,n:'Dormant pruning — shape for next season'},
+         {a:_P,n:'Apply high-potassium fertiliser before bud break'},
+         {a:_F,n:'Blossom — critical frost protection above 1500m'},
+         {a:_T,n:'Fruit set — thin to 1 fruit per spur'},
+         {a:_T,n:'Fruit development — first spray if needed'},
+         {a:_T,n:'Rapid sizing — irrigation critical in dry years'},
+         {a:_T,n:'Colour development — reduce nitrogen'},
+         {a:_H,n:'Early varieties — harvest test with starch-iodine'},
+         {a:_H,n:'Peak harvest — main varieties ready'},
+         {a:_H,n:'Late varieties — store in cool shade'},
+         {a:_R,n:'Post-harvest fertiliser application'},
+         {a:_R,n:'Dormancy — protect bark from cold injury'}
+       ]},
+      {name:'Arunachal Tea',local:'Tea (Low altitude)',em:'🍵',
+       m:[
+         {a:_R,n:'Dormancy — light pruning'},
+         {a:_P,n:'Fertiliser application — NPK pre-flush'},
+         {a:_F,n:'First flush — premium spring tea'},
+         {a:_F,n:'Spring flush peak — finest leaves'},
+         {a:_T,n:'Second flush'},
+         {a:_T,n:'Monsoon flush — continuous plucking'},
+         {a:_T,n:'Rain flush continues'},
+         {a:_T,n:'Monsoon retreat — quality improving'},
+         {a:_F,n:'Autumn flush begins'},
+         {a:_F,n:'Autumn flush peak'},
+         {a:_T,n:'Final plucking'},
+         {a:_R,n:'Winter rest begins'}
+       ]}
+    ]
+  },
+  tripura:{
+    label:'Tripura', emoji:'🍍',
+    terrain:'Hills in east, Agartala valley in west. Highest rubber plantation density in NE India',
+    rainfall:'2,200mm. Hot and humid year-round — ideal for pineapple and rubber',
+    tip:'Queen Pineapple needs 18 months from sucker plant to first fruit — time your market listing 6 months ahead',
+    crops:[
+      {name:'Queen Pineapple',local:'রাণী আনারস',em:'🍍',
+       m:[
+         {a:_T,n:'Ratoon crop management — remove weak suckers'},
+         {a:_T,n:'Apply sulphate of potash for fruit quality'},
+         {a:_T,n:'Weed and mulch between rows'},
+         {a:_S,n:'Plant new suckers for 18-month cycle'},
+         {a:_T,n:'Young plants establishing'},
+         {a:_H,n:'Ratoon fruit harvest — peak season'},
+         {a:_H,n:'Peak harvest — sweetest Brix level'},
+         {a:_T,n:'Post-harvest sucker management'},
+         {a:_T,n:'Apply compost to new plant rows'},
+         {a:_T,n:'Growth flush — fertilise'},
+         {a:_T,n:'Force-flower with ethephon if needed for market timing'},
+         {a:_T,n:'Fruit development — 5 months to harvest'}
+       ]},
+      {name:'Rubber',local:'রাবার গাছ',em:'🌳',
+       m:[
+         {a:_R,n:'Wintering — trees shed leaves, no tapping'},
+         {a:_R,n:'New leaf flush — trees recovering'},
+         {a:_T,n:'Resume tapping as bark firms up'},
+         {a:_F,n:'Tapping season in full swing — peak yield'},
+         {a:_F,n:'Yield peaks — tap every 2 days'},
+         {a:_T,n:'Monsoon — reduce tapping frequency'},
+         {a:_T,n:'Wet bark — panel drying essential'},
+         {a:_T,n:'Monsoon tapping continues'},
+         {a:_F,n:'Post-monsoon peak — latex quality improves'},
+         {a:_F,n:'Best tapping period — cool nights improve flow'},
+         {a:_F,n:'Good tapping — prepare for winter slowdown'},
+         {a:_T,n:'Tapping until leaf fall begins'}
+       ]},
+      {name:'Jackfruit',local:'কাঁঠাল',em:'🍈',
+       m:[
+         {a:_T,n:'Apply potassium-rich compost to root zone'},
+         {a:_P,n:'Light pruning — remove crossing branches'},
+         {a:_F,n:'Flowering and early fruit set'},
+         {a:_T,n:'Fruit sizing — support heavy fruits if needed'},
+         {a:_H,n:'Early harvest — raw jackfruit for vegetable market'},
+         {a:_H,n:'Peak ripe harvest — highest sugar content'},
+         {a:_H,n:'Final harvest — process surplus into pickle/chips'},
+         {a:_T,n:'Post-harvest fertiliser application'},
+         {a:_T,n:'Minor fruit on late flush'},
+         {a:_R,n:'Tree rest — no harvest'},
+         {a:_R,n:'Clean around base — prevent termites'},
+         {a:_T,n:'Apply compost before next season'}
+       ]},
+      {name:'Tripura Black Pepper',local:'গোল মরিচ',em:'🖤',
+       m:[
+         {a:_T,n:'Prune support tree — let light in'},
+         {a:_T,n:'Apply compost and wood ash'},
+         {a:_F,n:'Flower spikes emerging — do not disturb'},
+         {a:_T,n:'Fruit set on spikes'},
+         {a:_T,n:'Green peppercorns developing'},
+         {a:_T,n:'Monsoon — train vines upward'},
+         {a:_T,n:'Continue training — vines very active'},
+         {a:_T,n:'Peppercorns maturing — watch colour'},
+         {a:_H,n:'Harvest green spikes for fresh/brine market'},
+         {a:_H,n:'Red ripe harvest — premium dry pepper'},
+         {a:_T,n:'Post-harvest vine maintenance'},
+         {a:_T,n:'Apply fertiliser for next season'}
+       ]}
+    ]
+  },
+  sikkim:{
+    label:'Sikkim', emoji:'💚',
+    terrain:'Eastern Himalayas — 280m to 8,586m elevation. 100% organic state since 2016',
+    rainfall:'3,500mm in south, 500mm in north Lhonak. Altitude farming from subtropical to alpine',
+    tip:'Sikkim is 100% certified organic — this is your biggest market advantage. Never compromise this certification',
+    crops:[
+      {name:'Large Cardamom',local:'ठूलो अलैंची',em:'💚',
+       m:[
+         {a:_P,n:'Prune spent flowering stems — January deadline'},
+         {a:_P,n:'Clump division for expansion plots'},
+         {a:_T,n:'New tiller emergence — frost protection at 1500m+'},
+         {a:_T,n:'Rapid tiller growth — light mulching'},
+         {a:_T,n:'Inflorescence initiation — maximum shade'},
+         {a:_T,n:'Pollination — maintain bee habitat nearby'},
+         {a:_T,n:'Capsule development — no disturbance'},
+         {a:_H,n:'Harvest capsules as they turn red — bhatti curing'},
+         {a:_H,n:'Peak harvest — fire-cure in traditional kilns'},
+         {a:_H,n:'Late harvest — highest quality'},
+         {a:_P,n:'Post-harvest application of compost'},
+         {a:_P,n:'Sucker transplanting season'}
+       ]},
+      {name:'Organic Ginger',local:'अदुवा',em:'🫚',
+       m:[
+         {a:_R,n:'Seed rhizomes in cool storage'},
+         {a:_R,n:'Inspect stored rhizomes — remove rot'},
+         {a:_P,n:'Prepare raised beds with leaf mould compost'},
+         {a:_S,n:'Plant at 1200m–1800m altitude'},
+         {a:_T,n:'First shoots — mulch with pine needles'},
+         {a:_T,n:'Growth flush — earthing up'},
+         {a:_T,n:'Full canopy — minimal weeding'},
+         {a:_T,n:'Slow water — drying down'},
+         {a:_T,n:'Leaves yellowing — near harvest'},
+         {a:_T,n:'Withhold all water'},
+         {a:_H,n:'Harvest and cure — Sikkim organic premium'},
+         {a:_H,n:'Final harvest and market dispatch'}
+       ]},
+      {name:'Buckwheat',local:'फापर',em:'🌾',
+       m:[
+         {a:_R,n:'Field rest after winter crop'},
+         {a:_R,n:'Land preparation at high altitude'},
+         {a:_R,n:'Too cold above 2000m'},
+         {a:_R,n:'Soil warming — wait'},
+         {a:_S,n:'Sow spring buckwheat — short season variety'},
+         {a:_T,n:'Rapid growth in cool temperatures'},
+         {a:_H,n:'Spring crop harvest — 70 days from sow'},
+         {a:_P,n:'Land prep for autumn crop'},
+         {a:_S,n:'Sow autumn buckwheat — main crop'},
+         {a:_T,n:'Growth and flowering — bees active'},
+         {a:_H,n:'Autumn harvest — thresh by hand'},
+         {a:_R,n:'Field rest — green manure incorporation'}
+       ]},
+      {name:'Mandarin Orange',local:'सुन्तला',em:'🍊',
+       m:[
+         {a:_T,n:'Apply organic compost and potassium'},
+         {a:_P,n:'Pruning of crossing and diseased wood'},
+         {a:_F,n:'Flowering — critical frost protection'},
+         {a:_T,n:'Fruit set — thin to 2 per cluster'},
+         {a:_T,n:'Young fruit growing — no water stress'},
+         {a:_T,n:'Fruit sizing — monsoon does the work'},
+         {a:_T,n:'Continue monitoring for dieback'},
+         {a:_T,n:'Colour break beginning'},
+         {a:_T,n:'Ripening — reduce irrigation'},
+         {a:_H,n:'Early green harvest for local market'},
+         {a:_H,n:'Peak orange harvest — Diwali season premium'},
+         {a:_H,n:'Late harvest — sweetest fruits'}
+       ]}
+    ]
+  }
+};
+
+/* ── CALENDAR RENDER ── */
+function showState(key, btn){
+  document.querySelectorAll('.cst').forEach(b=>b.classList.remove('on'));
+  if(btn) btn.classList.add('on');
+  const data = CAL_DATA[key];
+  if(!data) return;
+
+  // State info bar
+  document.getElementById('cal-state-info').innerHTML = `
+    <div class="cal-si-item"><div class="cal-si-label">Terrain</div><div class="cal-si-val">${data.terrain}</div></div>
+    <div class="cal-si-item"><div class="cal-si-label">Rainfall</div><div class="cal-si-val">${data.rainfall}</div></div>
+    <div class="cal-si-item" style="flex:1;min-width:200px"><div class="cal-si-label">Farmer Tip</div><div class="cal-si-val" style="color:var(--muted);font-size:13px;font-weight:400">${data.tip}</div></div>`;
+
+  // Now strip
+  const nowTips = data.crops
+    .map(c => { const m = c.m[NOW_M]; return m && m.a !== _R ? `${c.em} <strong>${c.name}:</strong> ${m.n}` : null; })
+    .filter(Boolean);
+  const nowEl = document.getElementById('cal-now-text');
+  if(nowEl){
+    const mn = MONTHS[NOW_M];
+    nowEl.innerHTML = nowEl.innerHTML = `<strong>${mn} in ${data.label}:</strong> ` +
+      (nowTips.length ? nowTips.join(' &nbsp;·&nbsp; ') : 'Rest / preparation month for most crops');
+  }
+
+  // Table header
+  const thead = document.getElementById('cal-thead');
+  thead.innerHTML = '<tr><th class="crop-hd">Crop</th>' +
+    MONTHS.map((m,i) => `<th class="month-hd${i===NOW_M?' now':''}">${m}</th>`).join('') + '</tr>';
+
+  // Table body
+  const tbody = document.getElementById('cal-tbody');
+  tbody.innerHTML = data.crops.map(crop => {
+    const cells = crop.m.map((cell, i) => {
+      const label = cell.a === _R ? '' : cell.a === _S ? 'SOW' : cell.a === _T ? 'TEND' : cell.a === _H ? 'HARV' : cell.a === _P ? 'PREP' : 'PEAK';
+      return `<td class="cal-month-cell${i===NOW_M?' now-col':''}">
+        <div class="cal-pill ${cell.a}">
+          ${label}
+          <div class="cal-tooltip">${cell.n}</div>
+        </div>
+      </td>`;
+    }).join('');
+    return `<tr>
+      <td class="cal-crop-cell">
+        <div class="cal-crop-name">${crop.em} ${crop.name}</div>
+        <div class="cal-crop-local">${crop.local}</div>
+      </td>
+      ${cells}
+    </tr>`;
+  }).join('');
+}
+
+
+renderProduces();
+calcROI();
+fetchWx();
+showState('assam', null);
+if(localStorage.getItem('of_gkey')||localStorage.getItem('of_okey')){
+  const n=document.getElementById('key-notice');if(n)n.style.display='none';
+}
+</script>
+</body>
+</html>
