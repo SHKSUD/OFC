@@ -120,6 +120,48 @@ nav{position:sticky;top:0;z-index:900;height:72px;display:flex;align-items:cente
 .sec-sub{font-size:15px;color:var(--muted);max-width:600px;font-weight:300;line-height:1.7}
 .alt-bg{background:var(--bg2)}
 
+/* ── HOW IT WORKS (INTERACTIVE CINEMA WALKTHROUGH + 5-STEP PIPELINE) ── */
+.hiw-player{background:linear-gradient(155deg,#12240E,#081206);border:1px solid rgba(93,176,64,0.34);border-radius:22px;overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,0.5);margin-bottom:28px}
+.hiw-top{background:rgba(6,13,4,0.75);padding:14px 22px;border-bottom:1px solid var(--border2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.hiw-top-l{display:flex;align-items:center;gap:10px}
+.hiw-rec{width:9px;height:9px;border-radius:50%;background:#25D366;box-shadow:0 0 0 4px rgba(37,211,102,0.2);animation:blink 1.6s infinite}
+.hiw-top-title{font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--cream)}
+.hiw-controls{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hiw-btn{background:var(--green);color:#060D04;border:none;padding:7px 16px;border-radius:100px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:var(--sans);display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.hiw-btn:hover{background:var(--green2)}
+.hiw-btn.sec{background:rgba(255,255,255,0.06);color:var(--cream);border:1px solid var(--border)}
+.hiw-btn.sec:hover{border-color:var(--green);color:var(--green2)}
+
+.hiw-prog-bar{height:4px;background:rgba(255,255,255,0.06);width:100%;overflow:hidden}
+.hiw-prog-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--gold));width:20%;transition:width .35s ease}
+
+.hiw-stage{display:grid;grid-template-columns:1.05fr 0.95fr;gap:32px;padding:32px;align-items:center;min-height:330px}
+.hiw-phase-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;padding:4px 11px;border-radius:100px;margin-bottom:12px;
+  background:rgba(230,180,76,0.14);color:var(--gold);border:1px solid rgba(230,180,76,0.32)}
+.hiw-scene-title{font-family:var(--serif);font-size:clamp(26px,3.2vw,38px);font-weight:600;line-height:1.12;margin-bottom:12px;color:var(--cream)}
+.hiw-scene-desc{font-size:14.5px;color:var(--muted);line-height:1.68;margin-bottom:18px}
+.hiw-metrics{display:flex;gap:14px;flex-wrap:wrap}
+.hiw-m-pill{background:rgba(0,0,0,0.32);border:1px solid var(--border);border-radius:12px;padding:10px 14px}
+.hiw-m-val{font-family:var(--serif);font-size:22px;font-weight:700;color:var(--green2);line-height:1}
+.hiw-m-lbl{font-size:11px;color:var(--muted);margin-top:3px}
+
+.hiw-visual{background:rgba(6,13,4,0.65);border:1px solid var(--border);border-radius:18px;padding:22px;min-height:250px;display:flex;flex-direction:column;justify-content:center;animation:msgIn .28s ease}
+.hiw-v-card{background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:16px}
+.hiw-v-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--border2);font-size:13px}
+.hiw-v-row:last-child{border-bottom:none}
+
+.hiw-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.hiw-step-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:16px;cursor:pointer;transition:all .2s;position:relative}
+.hiw-step-card:hover{border-color:var(--green);transform:translateY(-2px)}
+.hiw-step-card.active{border-color:var(--green2);background:rgba(93,176,64,0.12);box-shadow:0 12px 28px rgba(0,0,0,0.35)}
+.hiw-s-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.hiw-s-num{width:26px;height:26px;border-radius:50%;background:rgba(93,176,64,0.18);color:var(--green2);font-size:12px;font-weight:800;display:grid;place-items:center}
+.hiw-step-card.active .hiw-s-num{background:var(--green);color:#060D04}
+.hiw-s-tag{font-size:9.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--gold)}
+.hiw-step-card h4{font-family:var(--serif);font-size:19px;font-weight:600;margin-bottom:4px;line-height:1.15}
+.hiw-step-card p{font-size:12px;color:var(--muted);line-height:1.48}
+
 /* ── FARMER ONBOARDING HUB (3-STEP INTERACTIVE FLOW + DIGITAL FARMER PASS) ── */
 .onboard-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:36px;align-items:start}
 .ob-card{background:var(--panel);border:1px solid var(--border);border-radius:20px;padding:28px}
@@ -434,14 +476,15 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 32p
 .econ-row:last-child{border-bottom:none;font-weight:700;color:var(--green2);padding-top:9px;font-size:14.5px}
 
 @media(max-width:960px){
-  .hero-inner,.onboard-grid,.wa-advisor-grid,.advisor-grid,.market-grid,.d-grid-2,.d-grid-3,.d-grid-4,.d-grid-5{grid-template-columns:1fr}
+  .hero-inner,.hiw-stage,.onboard-grid,.wa-advisor-grid,.advisor-grid,.market-grid,.d-grid-2,.d-grid-3,.d-grid-4,.d-grid-5{grid-template-columns:1fr}
+  .hiw-steps{grid-template-columns:repeat(2,1fr)}
   nav .nav-mid{display:none}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
   nav{padding:0 16px}
   .sec,.hero{padding-left:16px;padding-right:16px}
-  .fgrid,.compare-boxes,.frow,.check-grid,.ob-steps-bar,.pass-grid{grid-template-columns:1fr}
+  .hiw-steps,.fgrid,.compare-boxes,.frow,.check-grid,.ob-steps-bar,.pass-grid{grid-template-columns:1fr}
   .weather-row{grid-template-columns:repeat(2,1fr)}
   .wa-numbers{grid-template-columns:1fr}
 }
@@ -468,13 +511,13 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 32p
     </svg>
   </a>
   <div class="nav-mid" id="main-nav-links">
+    <a href="#how-it-works" onclick="closeDeckView()">How It Works</a>
     <a href="#onboard" onclick="closeDeckView()">Farmer Onboarding</a>
     <a href="#whatsapp" onclick="closeDeckView()">WhatsApp Signal</a>
     <a href="#advisor" onclick="closeDeckView()">AI Advisor</a>
     <a href="#produce" onclick="closeDeckView()">Produces</a>
     <a href="#market" onclick="closeDeckView()">Market Exchange</a>
     <a href="#calendar" onclick="closeDeckView()">Crop Calendar</a>
-    <a href="#tech" onclick="closeDeckView()">Farm Tech</a>
   </div>
   <div class="nav-r">
     <button class="pill pill-lock" onclick="requestDeckAccess()" id="deck-tab-btn">🔒 Deck</button>
@@ -498,7 +541,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 32p
         <p class="hero-sub">WhatsApp-native agricultural intelligence and market linkage built for the terrain, climate, and heritage of Northeast India. <strong>Weekly price signals, pre-committed floor prices, 48-hour village grading, and direct export access</strong> — on one platform.</p>
         <div class="hero-ctas">
           <button class="cta-main" onclick="document.getElementById('onboard').scrollIntoView({behavior:'smooth'})">🌿 Onboard as Farmer (WhatsApp)</button>
-          <button class="cta-sec" onclick="document.getElementById('whatsapp').scrollIntoView({behavior:'smooth'})">💬 Try Monday Price Signal →</button>
+          <button class="cta-sec" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'});startHIWAuto(true)">▶ Watch How It Works (45s)</button>
         </div>
         <div class="hero-stats">
           <div><div class="stat-num">8+1</div><div class="stat-lbl">NER States + Chhattisgarh</div></div>
@@ -552,6 +595,72 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 32p
       </div>
     </div>
   </div>
+
+  <!-- HOW IT WORKS (INTERACTIVE ANIMATED EXPLAINER + 5-STAGE PIPELINE) -->
+  <section class="sec" id="how-it-works">
+    <div class="sec-inner">
+      <div class="sec-hd">
+        <div class="sec-tag">🔄 How OneFarm Works · Seed to Export</div>
+        <h2 class="sec-title">Pre-harvest intelligence.<br><em>Post-harvest guaranteed income.</em></h2>
+        <p class="sec-sub">Watch the 5-step journey from a Monday morning WhatsApp signal in a village to a 20–50 tonne export lot and same-day farmer payment.</p>
+      </div>
+
+      <!-- Interactive Cinema Walkthrough Player -->
+      <div class="hiw-player">
+        <div class="hiw-top">
+          <div class="hiw-top-l">
+            <div class="hiw-rec"></div>
+            <span class="hiw-top-title" id="hiw-status-lbl">Interactive Walkthrough · Step 1 of 5</span>
+          </div>
+          <div class="hiw-controls">
+            <button class="hiw-btn" id="hiw-play-btn" onclick="toggleHIWPlay()">▶ Auto-Play Walkthrough</button>
+            <button class="hiw-btn sec" id="hiw-voice-btn" onclick="toggleHIWVoice()">🔊 Voice Narration: Off</button>
+            <button class="hiw-btn sec" onclick="nextHIWScene()">Next Step →</button>
+          </div>
+        </div>
+        <div class="hiw-prog-bar"><div class="hiw-prog-fill" id="hiw-prog-fill"></div></div>
+
+        <div class="hiw-stage">
+          <div>
+            <span class="hiw-phase-badge" id="hiw-phase">STAGE 1 · PRE-HARVEST INTELLIGENCE</span>
+            <h3 class="hiw-scene-title" id="hiw-title">Monday 7:00 AM: The 3-Number WhatsApp Signal</h3>
+            <p class="hiw-scene-desc" id="hiw-desc">Every Monday morning, registered farmers receive a verified WhatsApp message in their local language with three transparent numbers: Local Middleman Rate, Export Reference Rate, and OneFarm's Guaranteed Floor Price — combined with hyperlocal harvest timing.</p>
+            <div class="hiw-metrics" id="hiw-metrics"></div>
+          </div>
+          <div class="hiw-visual" id="hiw-visual"></div>
+        </div>
+      </div>
+
+      <!-- 5 Interactive Step Selector Cards -->
+      <div class="hiw-steps" id="hiw-steps">
+        <div class="hiw-step-card active" onclick="selectHIWScene(0)">
+          <div class="hiw-s-top"><div class="hiw-s-num">1</div><span class="hiw-s-tag">PRE · MONDAY</span></div>
+          <h4>Price &amp; Timing Signal</h4>
+          <p>Weekly WhatsApp with 3 price numbers + weather-matched harvest window.</p>
+        </div>
+        <div class="hiw-step-card" onclick="selectHIWScene(1)">
+          <div class="hiw-s-top"><div class="hiw-s-num">2</div><span class="hiw-s-tag">PRE · FLOOR</span></div>
+          <h4>Floor Price Locked</h4>
+          <p>Farmer replies "YES" to lock a pre-committed buyback floor before harvest.</p>
+        </div>
+        <div class="hiw-step-card" onclick="selectHIWScene(2)">
+          <div class="hiw-s-top"><div class="hiw-s-num">3</div><span class="hiw-s-tag">POST · 48 HRS</span></div>
+          <h4>Harvest &amp; Village Grade</h4>
+          <p>Field agent arrives within 48 hrs with crates &amp; moisture meters. Rot cut 30%→8%.</p>
+        </div>
+        <div class="hiw-step-card" onclick="selectHIWScene(3)">
+          <div class="hiw-s-top"><div class="hiw-s-num">4</div><span class="hiw-s-tag">POST · POOL</span></div>
+          <h4>20–50t Aggregated Lot</h4>
+          <p>200+ smallholder volumes consolidated at village level into export-ready lots.</p>
+        </div>
+        <div class="hiw-step-card" onclick="selectHIWScene(4)">
+          <div class="hiw-s-top"><div class="hiw-s-num">5</div><span class="hiw-s-tag">POST · PAY</span></div>
+          <h4>Export &amp; Same-Day Pay</h4>
+          <p>Dispatched to NERAMAC or direct buyers. Farmer receives same-day payment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FARMER ONBOARDING HUB (3-STEP INTERACTIVE ONBOARDING + DIGITAL PASS) -->
   <section class="sec alt-bg" id="onboard">
@@ -2051,7 +2160,178 @@ function showState(key, btn){
   }).join('');
 }
 
+/* ── HOW IT WORKS INTERACTIVE WALKTHROUGH CONTROLLER ── */
+const HIW_SCENES = [
+  {
+    phase: 'STAGE 1 · PRE-HARVEST INTELLIGENCE',
+    title: 'Monday 7:00 AM: The 3-Number WhatsApp Signal',
+    desc: 'Every Monday morning, registered farmers receive a verified WhatsApp broadcast in their local language with three transparent numbers: Local Middleman Rate, Export Reference Rate, and OneFarm\'s Guaranteed Floor Price — combined with hyperlocal harvest timing.',
+    speech: 'Stage 1. Every Monday at 7 AM, the farmer receives a WhatsApp message with three numbers: local middleman price, export price, and OneFarm guaranteed floor price, plus weather-matched harvest timing.',
+    metrics: [
+      {val:'3 Numbers', lbl:'Mandi · Export · Floor'},
+      {val:'0 Apps', lbl:'100% WhatsApp Native'},
+      {val:'Every Monday', lbl:'Village Price Discovery'}
+    ],
+    visual: `
+      <div class="hiw-v-card" style="border-left:3px solid #25D366">
+        <div style="font-size:11px;color:#25D366;font-weight:700;margin-bottom:6px">💬 WHATSAPP · MONDAY 07:00 AM · KARBI ANGLONG</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:8px">🫚 Karbi Anglong Ginger — Weekly Price Signal</div>
+        <div class="hiw-v-row"><span>Local Middleman Rate</span><span style="color:#E57B7B">₹60 / kg</span></div>
+        <div class="hiw-v-row"><span>Export Benchmark (Fresh / Powder)</span><span>₹85 / ₹680 / kg</span></div>
+        <div class="hiw-v-row"><span style="color:#25D366;font-weight:700">OneFarm Guaranteed Floor</span><span style="color:#25D366;font-weight:800">₹63 / kg</span></div>
+        <div style="font-size:12px;color:var(--muted);margin-top:8px">📅 Harvest window opens in 5 days · Stop irrigation now to prevent transit rot.</div>
+      </div>`
+  },
+  {
+    phase: 'STAGE 2 · PRE-HARVEST PRICE SECURITY',
+    title: 'Pre-Committed Floor Price Locked Before Harvest',
+    desc: 'The farmer replies "YES" on WhatsApp (or through their village field agent) to lock in OneFarm\'s guaranteed floor price before a single crop is lifted from the soil — eliminating blind farm-gate negotiation forever.',
+    speech: 'Stage 2. The farmer replies YES on WhatsApp to lock in a guaranteed floor price before harvest even begins. No blind selling to middlemen ever again.',
+    metrics: [
+      {val:'100% Locked', lbl:'Pre-Harvest Floor Price'},
+      {val:'Zero Risk', lbl:'No Blind Farm-Gate Sale'},
+      {val:'Instant Slot', lbl:'Field Agent Assigned'}
+    ],
+    visual: `
+      <div class="hiw-v-card">
+        <div style="background:#005C4B;color:#fff;padding:9px 13px;border-radius:10px;font-size:13px;margin-bottom:10px;align-self:flex-end">
+          ✓ Farmer Reply: "YES — Lock ₹63/kg floor for 1.2 tonnes"
+        </div>
+        <div style="font-size:13px;color:var(--green2);font-weight:700;margin-bottom:6px">🔒 Floor Price Contract #OF-KA-204 Confirmed</div>
+        <div class="hiw-v-row"><span>Protected Minimum Rate</span><span style="color:var(--green2);font-weight:700">₹63 / kg Guaranteed</span></div>
+        <div class="hiw-v-row"><span>Assigned Village Field Agent</span><span>B. Rongpi (Diphu Hub)</span></div>
+        <div class="hiw-v-row"><span>Scheduled Grading Pickup</span><span style="color:var(--gold)">Within 48 Hours of Harvest</span></div>
+      </div>`
+  },
+  {
+    phase: 'STAGE 3 · POST-HARVEST QUALITY & LOSS REDUCTION',
+    title: '48-Hour Village Grading Cuts Rot from 30% to 8%',
+    desc: 'Within 48 hours of harvest, a OneFarm field agent arrives at the village collection point with digital moisture meters and ventilated mesh crates — replacing suffocating plastic sacks and cutting post-harvest spoilage from 30% down to 8%.',
+    speech: 'Stage 3. Within 48 hours of harvest, a OneFarm field agent arrives at the village with moisture meters and ventilated crates, cutting post-harvest rot from 30 percent down to 8 percent.',
+    metrics: [
+      {val:'48 Hours', lbl:'Farm-Gate Grading SLA'},
+      {val:'30% → 8%', lbl:'Post-Harvest Loss Cut'},
+      {val:'+22% Crop', lbl:'Extra Saleable Volume'}
+    ],
+    visual: `
+      <div class="hiw-v-card">
+        <div style="font-size:11px;color:var(--gold);font-weight:800;letter-spacing:.07em;margin-bottom:8px">QA · VILLAGE GRADING PROTOCOL</div>
+        <div class="hiw-v-row"><span>1. Shade Curing &amp; Soil Brush</span><span style="color:var(--green2)">✓ Completed (48 hrs)</span></div>
+        <div class="hiw-v-row"><span>2. Rhizome / Fruit Moisture Check</span><span style="color:var(--green2)">✓ Grade-A (&lt;13% Dry Spec)</span></div>
+        <div class="hiw-v-row"><span>3. Ventilated Mesh Crate Packing</span><span style="color:var(--green2)">✓ Rot Cut from 30% to 8%</span></div>
+        <div class="hiw-v-row"><span>Saleable Yield Recovered per 1t</span><span style="color:var(--gold);font-weight:700">920 kg (vs 700 kg traditional)</span></div>
+      </div>`
+  },
+  {
+    phase: 'STAGE 4 · VILLAGE-LEVEL MICRO-AGGREGATION',
+    title: '200+ Smallholders Pooled into 20–50t Export Lots',
+    desc: 'No institutional or export buyer purchases 1 tonne from a single farmer. OneFarm consolidates 200+ graded smallholder harvests across the cluster into 20–50 tonne export-ready bulk lots — without waiting for siloed FPOs.',
+    speech: 'Stage 4. OneFarm consolidates over 200 smallholder harvests into a single 20 to 50 tonne export-grade lot at the village hub, unlocking direct institutional buyers.',
+    metrics: [
+      {val:'200+ Farmers', lbl:'Pooled per Cluster'},
+      {val:'20–50 MT', lbl:'Export-Grade Bulk Lot'},
+      {val:'No FPO Wait', lbl:'Direct Village Execution'}
+    ],
+    visual: `
+      <div class="hiw-v-card">
+        <div style="font-size:11px;color:var(--green2);font-weight:800;letter-spacing:.07em;margin-bottom:8px">AGGREGATION ENGINE · LOT #KA-2026-04</div>
+        <div class="hiw-v-row"><span>1 Farmer Alone (0.5–1t)</span><span style="color:#E57B7B">Middleman Only</span></div>
+        <div class="hiw-v-row"><span>5 Farmers (3–5t)</span><span style="color:var(--muted)">Local Trader Only</span></div>
+        <div class="hiw-v-row"><span style="color:var(--green2);font-weight:700">OneFarm Cluster (200+ Farmers)</span><span style="color:var(--green2);font-weight:800">38.5t / 50t Export Lot</span></div>
+        <div style="margin-top:10px;height:8px;background:rgba(255,255,255,0.07);border-radius:4px;overflow:hidden">
+          <div style="width:77%;height:100%;background:linear-gradient(90deg,var(--green),var(--gold))"></div>
+        </div>
+        <div style="font-size:11.5px;color:var(--muted);margin-top:6px">77% of 50 MT institutional export contract filled · Dispatch ready</div>
+      </div>`
+  },
+  {
+    phase: 'STAGE 5 · EXPORT DISPATCH & SAME-DAY PAYOUT',
+    title: 'Direct Export Pathway & Same-Day Farmer Payment',
+    desc: 'The consolidated lot is dispatched with phytosanitary and organic compliance to NERAMAC processing units or UAE, UK, and domestic institutional buyers — while the farmer receives same-day bank/UPI payment upon graded handover.',
+    speech: 'Stage 5. The graded bulk lot is dispatched to NERAMAC or direct export buyers with full compliance, and the farmer receives same-day payment, earning over 8,000 to 15,000 rupees extra per season.',
+    metrics: [
+      {val:'Same Day', lbl:'Direct Farmer Payout'},
+      {val:'+₹8k–16k', lbl:'Extra Net Income / Season'},
+      {val:'UAE · UK · India', lbl:'APEDA & NERAMAC Buyers'}
+    ],
+    visual: `
+      <div class="hiw-v-card" style="border-color:rgba(230,180,76,0.4)">
+        <div style="font-size:11px;color:var(--gold);font-weight:800;letter-spacing:.07em;margin-bottom:8px">DISPATCH &amp; SAME-DAY SETTLEMENT</div>
+        <div class="hiw-v-row"><span>Destination Channel</span><span>NERAMAC Dehydration &amp; Export Desk</span></div>
+        <div class="hiw-v-row"><span>Compliance Cleared</span><span style="color:var(--green2)">✓ Phytosanitary + GI Traceability</span></div>
+        <div class="hiw-v-row"><span>Farmer Payout Status</span><span style="color:var(--green2);font-weight:700">✓ Paid Same Day via UPI / Bank</span></div>
+        <div class="hiw-v-row"><span>Seasonal Farmer Net Uplift</span><span style="color:var(--gold);font-weight:800">+₹15,960 Extra (on 1.0t Ginger)</span></div>
+      </div>`
+  }
+];
+
+let hiwIndex = 0;
+let hiwTimer = null;
+let hiwVoiceOn = false;
+
+function selectHIWScene(idx, fromAuto = false){
+  if (!fromAuto && hiwTimer) stopHIWAuto();
+  hiwIndex = (idx + HIW_SCENES.length) % HIW_SCENES.length;
+  const s = HIW_SCENES[hiwIndex];
+  document.getElementById('hiw-status-lbl').textContent = (hiwTimer ? '▶ Auto-Playing Walkthrough · ' : 'Interactive Walkthrough · ') + `Step ${hiwIndex + 1} of 5`;
+  document.getElementById('hiw-prog-fill').style.width = ((hiwIndex + 1) * 20) + '%';
+  document.getElementById('hiw-phase').textContent = s.phase;
+  document.getElementById('hiw-title').textContent = s.title;
+  document.getElementById('hiw-desc').textContent = s.desc;
+  document.getElementById('hiw-metrics').innerHTML = s.metrics.map(m => `
+    <div class="hiw-m-pill"><div class="hiw-m-val">${m.val}</div><div class="hiw-m-lbl">${m.lbl}</div></div>
+  `).join('');
+  document.getElementById('hiw-visual').innerHTML = s.visual;
+
+  document.querySelectorAll('.hiw-step-card').forEach((c, i) => c.classList.toggle('active', i === hiwIndex));
+
+  if (hiwVoiceOn && 'speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(s.speech);
+    u.rate = 1.02;
+    window.speechSynthesis.speak(u);
+  }
+}
+
+function nextHIWScene(){
+  selectHIWScene(hiwIndex + 1);
+}
+
+function startHIWAuto(resetToZero = false){
+  if (resetToZero) hiwIndex = -1;
+  if (hiwTimer) clearInterval(hiwTimer);
+  document.getElementById('hiw-play-btn').textContent = '⏸ Pause Walkthrough';
+  selectHIWScene(hiwIndex + 1, true);
+  hiwTimer = setInterval(() => {
+    selectHIWScene(hiwIndex + 1, true);
+  }, 6500);
+}
+
+function stopHIWAuto(){
+  if (hiwTimer) clearInterval(hiwTimer);
+  hiwTimer = null;
+  document.getElementById('hiw-play-btn').textContent = '▶ Auto-Play Walkthrough';
+  document.getElementById('hiw-status-lbl').textContent = `Interactive Walkthrough · Step ${hiwIndex + 1} of 5`;
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+}
+
+function toggleHIWPlay(){
+  if (hiwTimer) stopHIWAuto();
+  else startHIWAuto(false);
+}
+
+function toggleHIWVoice(){
+  hiwVoiceOn = !hiwVoiceOn;
+  document.getElementById('hiw-voice-btn').textContent = hiwVoiceOn ? '🔊 Voice Narration: On' : '🔊 Voice Narration: Off';
+  if (hiwVoiceOn) {
+    selectHIWScene(hiwIndex, Boolean(hiwTimer));
+  } else if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+}
+
 /* ── INIT ── */
+selectHIWScene(0);
 syncPass();
 setWACrop('ginger', document.querySelector('.wct'));
 calcImpact();
