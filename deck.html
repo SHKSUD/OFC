@@ -141,8 +141,8 @@ a{color:inherit;text-decoration:none}
   <button class="r-chip" data-s="2" onclick="goS(2)">✓ Market Analysis (TAM/SAM/SOM)</button>
   <button class="r-chip" data-s="3" onclick="goS(3)">✓ Problem &amp; Feasibility (1/2)</button>
   <button class="r-chip" data-s="4" onclick="goS(4)">✓ Problem, Novelty, IPR &amp; Approach (2/2)</button>
-  <button class="r-chip" data-s="5" onclick="goS(5)">✓ Product, Technology &amp; IP Strategy</button>
-  <button class="r-chip" data-s="6" onclick="goS(6)">✓ Current Status of Development</button>
+  <button class="r-chip" data-s="5" onclick="goS(5)">✓ Tech Architecture &amp; IP</button>
+  <button class="r-chip" data-s="6" onclick="goS(6)">✓ How It Works &amp; Dev Status</button>
   <button class="r-chip" data-s="7" onclick="goS(7)">✓ Business Model &amp; Unit Economics</button>
   <button class="r-chip" data-s="8" onclick="goS(8)">✓ Product Market Fit (PMF)</button>
   <button class="r-chip" data-s="9" onclick="goS(9)">✓ Competitive &amp; GTM Strategy</button>
@@ -257,38 +257,51 @@ a{color:inherit;text-decoration:none}
     <div class="s-foot"><strong>Aggregation is an organisation problem. OneFarm solves it at village level.</strong><span></span></div>
   </div>
 
-  <!-- SLIDE 6: PRODUCT, TECHNOLOGY & IP STRATEGY -->
+  <!-- SLIDE 6: PRODUCT, TECHNOLOGY ARCHITECTURE & IP STRATEGY -->
   <div class="slide">
-    <div class="s-head"><div class="s-tag-wrap"><span class="s-tag">PRODUCT, TECHNOLOGY &amp; IP STRATEGY</span><span class="s-rubric-pill">Rubric #6 · Product, Tech &amp; IP Strategy</span></div><span class="s-meta">OneFarm · 2026</span><span class="s-num">6 / 12</span></div>
+    <div class="s-head"><div class="s-tag-wrap"><span class="s-tag">PRODUCT, TECHNOLOGY ARCHITECTURE &amp; IP STRATEGY</span><span class="s-rubric-pill">Rubric #6 · Tech Behind OneFarm</span></div><span class="s-meta">OneFarm · 2026</span><span class="s-num">6 / 12</span></div>
     <div class="s-body">
-      <h2 class="s-title" style="font-size:34px;margin-bottom:4px">WhatsApp Farmer Interface. <em>AI + Field-Agent Intelligence Core.</em></h2>
-      <p style="font-size:13px;color:var(--muted);margin-bottom:14px"><strong>Tech &amp; IP Stack:</strong> WhatsApp Business Workflow + Gemini AI Agronomy Engine + Open-Meteo Micro-Climate Feed + Proprietary 3-Number Price Index (Trade Secret IP) &amp; OneFarm™ Brand.</p>
+      <h2 class="s-title" style="font-size:33px;margin-bottom:6px">Not a WhatsApp Group. <em>A 3-Layer Headless Agri Engine.</em></h2>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:14px">WhatsApp Business API is only our zero-friction 1-on-1 front door — all intelligence, lot-pooling, 48-hr grading, and payout automation sit on OneFarm's backend.</p>
+      <div class="grid-3" style="margin-bottom:14px">
+        <div class="box hi">
+          <span class="box-tag">LAYER 1 · FARMER INTERFACE</span>
+          <h4>Private 1-on-1 WhatsApp API</h4>
+          <p>• Personalized to farmer's crop &amp; cluster<br>• Monday 3-number signal + weather alert<br>• Interactive 1-tap <strong>"YES — Lock Floor"</strong><br>• SMS / IVR fallback for feature phones</p>
+        </div>
+        <div class="box gold">
+          <span class="box-tag">LAYER 2 · INTELLIGENCE &amp; IP CORE</span>
+          <h4>OneFarm Backend Brain</h4>
+          <p>• <strong>Gemini AI</strong> agronomy &amp; curing engine<br>• <strong>Open-Meteo</strong> microclimate timing API<br>• <strong>3-Number Price Index</strong> (Trade Secret IP)<br>• Auto-generates Floor ID + 50t Lot Pool</p>
+        </div>
+        <div class="box hi">
+          <span class="box-tag">LAYER 3 · FIELD &amp; BUYER PORTAL</span>
+          <h4>Ops, QC &amp; Export Desk</h4>
+          <p>• Field agent 48-hr SLA &amp; moisture photo log<br>• Weigh-bridge audit → same-day UPI pay<br>• B2B Buyer Portal (<strong>ofc-two.vercel.app</strong>)<br>• APEDA / NERAMAC phytosanitary docs</p>
+        </div>
+      </div>
       <div class="grid-4">
-        <div class="box"><span class="box-tag">PRE · TIMING AI</span><h4>Harvest Timing</h4><p>Optimal harvest window alerts via WhatsApp — weather + crop maturity data combined.</p></div>
-        <div class="box"><span class="box-tag">PRE · PRICE IP</span><h4>Price Intelligence</h4><p>Proprietary weekly signal: mandi vs. export vs. OneFarm rate. 3 numbers every Monday.</p></div>
-        <div class="box"><span class="box-tag">AGG · LOT ENGINE</span><h4>Village Aggregation</h4><p>Field agents consolidate 200+ farmers into 20–50t export lots. No FPO dependency.</p></div>
-        <div class="box"><span class="box-tag">QA · 48-HR SOP</span><h4>Quality Grading</h4><p>Sorted, moisture-checked &amp; export-graded within 48 hours at village point.</p></div>
-        <div class="box"><span class="box-tag">POST · LOSS CUT</span><h4>Storage Guidance</h4><p>WhatsApp curing &amp; rot-prevention protocol cuts spoilage from 30% to 8%.</p></div>
-        <div class="box"><span class="box-tag">POST · COMPLIANCE</span><h4>Dispatch Support</h4><p>Phytosanitary certificates, NPOP organic docs &amp; logistics managed end-to-end.</p></div>
-        <div class="box"><span class="box-tag">EXP · B2B PORTAL</span><h4>Export Pathway</h4><p>Live buyer portal (ofc-two.vercel.app) + APEDA &amp; NERAMAC export channels.</p></div>
-        <div class="box hi"><span class="box-tag">PAY · FINTECH</span><h4>Guaranteed Buyback</h4><p>Pre-committed floor price locked before harvest + same-day farmer payment.</p></div>
+        <div class="box" style="padding:11px 14px"><span class="box-tag">PRE</span><p style="color:var(--cream)"><strong>Harvest Timing</strong> + Weekly 3-Number Price Index</p></div>
+        <div class="box" style="padding:11px 14px"><span class="box-tag">AGG &amp; QA</span><p style="color:var(--cream)"><strong>200+ Farmer Lot Pooling</strong> + 48-Hr Grading SOP</p></div>
+        <div class="box" style="padding:11px 14px"><span class="box-tag">POST</span><p style="color:var(--cream)"><strong>Rot Control (30%→8%)</strong> + Phytosanitary Dispatch</p></div>
+        <div class="box" style="padding:11px 14px"><span class="box-tag">IP MOAT</span><p style="color:var(--cream)"><strong>Hill Yield/Price Dataset</strong> + OneFarm™ Brand</p></div>
       </div>
     </div>
-    <div class="s-foot"><span>IP Roadmap: Trade-secret village yield/price dataset + Trademark + FPO SaaS licensing</span><strong>Live Portal: ofc-two.vercel.app</strong></div>
+    <div class="s-foot"><span>Architecture: 1-on-1 WhatsApp API + Gemini AI + Village Lot Engine</span><strong>Live Portal: ofc-two.vercel.app</strong></div>
   </div>
 
-  <!-- SLIDE 7: CURRENT STATUS OF DEVELOPMENT -->
+  <!-- SLIDE 7: HOW IT WORKS & CURRENT STATUS OF DEVELOPMENT -->
   <div class="slide">
-    <div class="s-head"><div class="s-tag-wrap"><span class="s-tag">CURRENT STATUS OF DEVELOPMENT · TRL 7 LIVE PILOT</span><span class="s-rubric-pill">Rubric #8 · Current Status of Development</span></div><span class="s-meta">OneFarm · 2026</span><span class="s-num">7 / 12</span></div>
+    <div class="s-head"><div class="s-tag-wrap"><span class="s-tag">HOW IT WORKS &amp; CURRENT STATUS OF DEVELOPMENT (TRL 7)</span><span class="s-rubric-pill">Rubric #8 · Workflow &amp; Live Status</span></div><span class="s-meta">OneFarm · 2026</span><span class="s-num">7 / 12</span></div>
     <div class="s-body">
-      <h2 class="s-title" style="font-size:36px;margin-bottom:8px">Platform live. Field pilot running in <em>Assam &amp; Chhattisgarh.</em></h2>
-      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">OneFarm is beyond concept stage — our digital intelligence portal is live at <strong style="color:var(--green2)">ofc-two.vercel.app</strong> and our 5-step last-mile workflow is deployed across our Year 1 farmer cohorts:</p>
+      <h2 class="s-title" style="font-size:35px;margin-bottom:8px">5-Step Last-Mile Flow. <em>Live MVP &amp; Active Field Pilot.</em></h2>
+      <p style="font-size:13.5px;color:var(--muted);margin-bottom:16px">From Monday morning WhatsApp signal to 20–50t export lot and same-day farmer payout — already live at <strong style="color:var(--green2)">ofc-two.vercel.app</strong> and deployed across Year 1 cohorts:</p>
       <div class="grid-5">
-        <div class="box hi"><span class="box-tag">1 · LIVE NOW</span><h4>Price Signal Engine</h4><p>Weekly 3-number WhatsApp simulator, live NER weather &amp; 8-state crop calendar deployed.</p></div>
-        <div class="box hi"><span class="box-tag">2 · ACTIVE</span><h4>Floor Price Protocol</h4><p>Pre-harvest guaranteed buyback framework structured for Karbi Anglong ginger &amp; pineapple.</p></div>
-        <div class="box hi"><span class="box-tag">3 · DEPLOYED</span><h4>48-Hr Grading SOP</h4><p>Field agent sorting, moisture testing &amp; ventilated crate protocol cutting rot from 30% to 8%.</p></div>
-        <div class="box hi"><span class="box-tag">4 · ONBOARDING</span><h4>200-Farmer Pilot</h4><p>Karbi Anglong &amp; Golaghat (Assam) ginger cluster + Kabirdham (Chhattisgarh) kodo-kutki pilot.</p></div>
-        <div class="box gold"><span class="box-tag">5 · ALIGNED</span><h4>Export &amp; Buyer Desk</h4><p>NERAMAC processing &amp; APEDA export compliance pathways mapped with B2B buyer portal.</p></div>
+        <div class="box hi"><span class="box-tag">1 · PRE · LIVE</span><h4>Monday Signal</h4><p>Automated 1-on-1 WhatsApp sends 3 price numbers + harvest timing alert.</p></div>
+        <div class="box hi"><span class="box-tag">2 · PRE · ACTIVE</span><h4>Floor Locked</h4><p>Farmer taps "YES"; backend issues Floor ID &amp; assigns nearest field agent.</p></div>
+        <div class="box hi"><span class="box-tag">3 · POST · 48 HRS</span><h4>Village Grading</h4><p>Agent logs moisture % &amp; packs in ventilated crates — cuts rot 30%→8%.</p></div>
+        <div class="box hi"><span class="box-tag">4 · POST · PILOT</span><h4>20–50t Lot Pool</h4><p>200 Assam ginger + Kabirdham (CG) farmers pooled into export bulk lots.</p></div>
+        <div class="box gold"><span class="box-tag">5 · PAY · ALIGNED</span><h4>Export + Same-Day Pay</h4><p>Dispatched via NERAMAC/APEDA; HQ triggers same-day UPI/bank payout.</p></div>
       </div>
     </div>
     <div class="s-foot"><span>Technology Readiness: <strong>TRL 7 (Live Platform + Field Pilot Execution)</strong></span><strong>Demo: ofc-two.vercel.app</strong></div>
