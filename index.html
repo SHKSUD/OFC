@@ -541,7 +541,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 32p
         <p class="hero-sub">WhatsApp-native agricultural intelligence and market linkage built for the terrain, climate, and heritage of Northeast India. <strong>Weekly price signals, pre-committed floor prices, 48-hour village grading, and direct export access</strong> — on one platform.</p>
         <div class="hero-ctas">
           <button class="cta-main" onclick="document.getElementById('onboard').scrollIntoView({behavior:'smooth'})">🌿 Onboard as Farmer (WhatsApp)</button>
-          <button class="cta-sec" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'});startHIWAuto(true)">▶ Watch How It Works (45s)</button>
+          <button class="cta-sec" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'});playHIWVideo()">▶ Watch How It Works Film</button>
         </div>
         <div class="hero-stats">
           <div><div class="stat-num">8+1</div><div class="stat-lbl">NER States + Chhattisgarh</div></div>
@@ -605,22 +605,32 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 32p
         <p class="sec-sub">Watch the 5-step journey from a Monday morning WhatsApp signal in a village to a 20–50 tonne export lot and same-day farmer payment.</p>
       </div>
 
-      <!-- Interactive Cinema Walkthrough Player -->
+      <!-- Interactive Cinema Walkthrough Player (1080p Film + 5-Step Mode) -->
       <div class="hiw-player">
         <div class="hiw-top">
           <div class="hiw-top-l">
             <div class="hiw-rec"></div>
-            <span class="hiw-top-title" id="hiw-status-lbl">Interactive Walkthrough · Step 1 of 5</span>
+            <span class="hiw-top-title" id="hiw-status-lbl">OneFarm 1080p Product Film · How It Works</span>
           </div>
           <div class="hiw-controls">
-            <button class="hiw-btn" id="hiw-play-btn" onclick="toggleHIWPlay()">▶ Auto-Play Walkthrough</button>
-            <button class="hiw-btn sec" id="hiw-voice-btn" onclick="toggleHIWVoice()">🔊 Voice Narration: Off</button>
-            <button class="hiw-btn sec" onclick="nextHIWScene()">Next Step →</button>
+            <button class="hiw-btn" id="hiw-mode-video" onclick="setHIWMode('video')">🎬 Watch Film (1080p)</button>
+            <button class="hiw-btn sec" id="hiw-mode-steps" onclick="setHIWMode('steps')">🔄 Interactive 5-Step Breakdown</button>
+            <button class="hiw-btn sec" id="hiw-play-btn" style="display:none" onclick="toggleHIWPlay()">▶ Auto-Play Steps</button>
+            <button class="hiw-btn sec" id="hiw-voice-btn" style="display:none" onclick="toggleHIWVoice()">🔊 Voice: Off</button>
           </div>
         </div>
-        <div class="hiw-prog-bar"><div class="hiw-prog-fill" id="hiw-prog-fill"></div></div>
+        <div class="hiw-prog-bar"><div class="hiw-prog-fill" id="hiw-prog-fill" style="width:100%"></div></div>
 
-        <div class="hiw-stage">
+        <!-- 1080p Video View -->
+        <div id="hiw-video-wrap" style="background:#040903;padding:18px 22px 22px">
+          <video id="hiw-video" controls playsinline preload="metadata" style="width:100%;max-height:540px;border-radius:14px;display:block;border:1px solid var(--border);background:#000">
+            <source src="onefarm-explainer.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <!-- Interactive 5-Step View -->
+        <div class="hiw-stage" id="hiw-stage-wrap" style="display:none">
           <div>
             <span class="hiw-phase-badge" id="hiw-phase">STAGE 1 · PRE-HARVEST INTELLIGENCE</span>
             <h3 class="hiw-scene-title" id="hiw-title">Monday 7:00 AM: The 3-Number WhatsApp Signal</h3>
@@ -2382,8 +2392,47 @@ let hiwIndex = 0;
 let hiwTimer = null;
 let hiwVoiceOn = false;
 
+function setHIWMode(mode){
+  const vWrap = document.getElementById('hiw-video-wrap');
+  const sWrap = document.getElementById('hiw-stage-wrap');
+  const btnV = document.getElementById('hiw-mode-video');
+  const btnS = document.getElementById('hiw-mode-steps');
+  const btnP = document.getElementById('hiw-play-btn');
+  const btnVo = document.getElementById('hiw-voice-btn');
+  const vid = document.getElementById('hiw-video');
+  if (mode === 'video') {
+    stopHIWAuto();
+    vWrap.style.display = 'block';
+    sWrap.style.display = 'none';
+    btnV.className = 'hiw-btn';
+    btnS.className = 'hiw-btn sec';
+    btnP.style.display = 'none';
+    btnVo.style.display = 'none';
+    document.getElementById('hiw-status-lbl').textContent = 'OneFarm 1080p Product Film · How It Works';
+    document.getElementById('hiw-prog-fill').style.width = '100%';
+  } else {
+    if (vid) vid.pause();
+    vWrap.style.display = 'none';
+    sWrap.style.display = 'grid';
+    btnV.className = 'hiw-btn sec';
+    btnS.className = 'hiw-btn';
+    btnP.style.display = 'inline-flex';
+    btnVo.style.display = 'inline-flex';
+    selectHIWScene(hiwIndex, true);
+  }
+}
+
+function playHIWVideo(){
+  setHIWMode('video');
+  const vid = document.getElementById('hiw-video');
+  if (vid) { vid.currentTime = 0; vid.play().catch(() => {}); }
+}
+
 function selectHIWScene(idx, fromAuto = false){
-  if (!fromAuto && hiwTimer) stopHIWAuto();
+  if (!fromAuto) {
+    setHIWMode('steps');
+    if (hiwTimer) stopHIWAuto();
+  }
   hiwIndex = (idx + HIW_SCENES.length) % HIW_SCENES.length;
   const s = HIW_SCENES[hiwIndex];
   document.getElementById('hiw-status-lbl').textContent = (hiwTimer ? '▶ Auto-Playing Walkthrough · ' : 'Interactive Walkthrough · ') + `Step ${hiwIndex + 1} of 5`;
@@ -2444,7 +2493,8 @@ function toggleHIWVoice(){
 }
 
 /* ── INIT ── */
-selectHIWScene(0);
+selectHIWScene(0, true);
+setHIWMode('video');
 syncPass();
 renderFarmerRegistry();
 setWACrop('ginger', document.querySelector('.wct'));
